@@ -1,0 +1,434 @@
+.btn .bx {
+    vertical-align: inherit;
+    margin-top: -3px;
+    font-size: 1.15rem;
+  }
+  
+  .form-control {
+    height: calc(2.5rem + 2px);
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+  }
+  
+  .search-btn {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+  }
+  
+  .bx.icon-single {
+    font-size: 1.5rem;
+  }
+  
+  .form-inline .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  .form-inline .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .search-bar{
+    display: none;
+  }
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) {
+     .form-inline .form-control {
+      width: 100px;
+    }
+  }
+  @media (max-width: 767px) {
+    .search-bar {
+      display: block;
+    z-index: 99;
+    width:210px;
+    
+  }
+  
+  .search-bar .form-control {
+    width: calc(100% - 55px);
+    height: 37px;
+  }
+}
+
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .form-inline .form-control {
+      width: 210px;
+    }
+  }
+  
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .form-inline .form-control {
+      width: 440px;
+    }
+  }
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .form-inline .form-control {
+      width: 600px;
+    }
+  }
+  
+  .sub-menu.navbar-light .navbar-nav .active > .nav-link,
+  .sub-menu.navbar-light .navbar-nav .nav-link.active,
+  .sub-menu.navbar-light .navbar-nav .nav-link.show,
+  .sub-menu.navbar-light .navbar-nav .show > .nav-link {
+    border-bottom: 3px solid #007bff;
+    color: #007bff;
+  }
+  
+  .navbar .navbar-toggler {
+    border: none;
+  }
+  
+  .navbar-light .navbar-toggler:focus {
+    outline: none;
+  }
+  
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .main-menu {
+    position: relative;
+    z-index: 3;
+  }
+  .top-nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:99;
+  }
+  .sub-menu {
+    position: relative;
+    z-index: 2;
+    padding: 0 1rem;
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .sub-menu {
+      padding: 0 1rem;
+    }
+  
+    .sub-menu.navbar-expand-md .navbar-nav .nav-link {
+      padding: 1rem 1.5rem;
+    }
+  }
+  
+  .navbar.bg-light {
+    background: #fff !important;
+    box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-dropdown .nav-link {
+    padding: 0.15rem 0;
+  }
+  
+  #sidebar {
+    background: #fff;
+    height: 100%;
+    left: -100%;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    position: fixed;
+    transition: 0.4s ease-in-out;
+    width: 84%;
+    z-index: 5001;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    padding: 1.25rem 1rem 1rem;
+  }
+  
+  #sidebar.active {
+    left: 0;
+  }
+  
+  #sidebar .sidebar-header {
+    background: #fff;
+    border-bottom: 1px solid #e4e4e4;
+    padding-bottom: 1.5rem;
+  }
+  
+  #sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 40px;
+  }
+  
+  #sidebar ul p {
+    color: #fff;
+    padding: 10px;
+  }
+  
+  #sidebar ul li a {
+    padding: 10px 16px;
+    font-size: 1.1em;
+    display: block;
+    color: #000;
+  }
+  
+  #sidebar ul li a:hover {
+    color: #7386d5;
+    background: #fff;
+  }
+  
+  #sidebar ul li.active > a,
+  #sidebar a[aria-expanded="true"] {
+    color: #007bff;
+    background: #e6f2ff;
+    border-radius: 6px;
+  }
+  
+  a[data-toggle="collapse"] {
+    position: relative;
+  }
+  
+  #sidebar .links .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+  
+  section {
+    padding: 6rem;
+    height:300px;
+    background: #e4e4e4;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+    width: 100%;
+    opacity: 0;
+  }
+  
+  .overlay.visible {
+    opacity: 1;
+    z-index: 5000;
+  }
+  
+  /* .mobiHeader .menuActive~.overlay {
+      opacity: 1;
+      width: 100%;
+  } */
+  
+  ul.social-icons {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  
+  ul.social-icons li {
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0;
+  }
+  
+  #sidebar ul.social-icons li a {
+    font-size: 24px;
+  }
+  
+  .utility-nav {
+    background: #e4e4e4;
+    padding: 0.5rem 1rem;
+  }
+  
+  .utility-nav p {
+    margin-bottom: 0;
+  }
+  
+  
+  .avatar {
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-right: 8px;
+  }
+  
+  .avatar.avatar-xs {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  
+  .user-dropdown .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+  
+  .search{
+      border-radius: 50px 0px 0px 50px;
+      border:1px solid rgba(196, 196, 255, 0.993);
+      border-right:none;
+      outline: none;
+      
+  }
+  .search:focus, .search:focus .form-inline button,.form-inline button:focus{
+    box-shadow: inset 0 0 0 0;
+  }
+  .form-inline button{
+      border:1px solid rgba(196, 196, 255, 0.993);
+      border-left:none;
+    border-radius: 0px 50px 50px 0px;
+  }
+  
+  i{
+      color:gray;
+  }
+  .carousel-item img{
+      height:450px;
+      width:100%;
+      
+  }
+  
+  /*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+	
+	.right .modal-dialog {
+		position: fixed;
+		margin: auto;
+		width: 50%;
+		height: 100%;
+		-webkit-transform: translate3d(0%, 10, 10);
+		    -ms-transform: translate3d(0%, 10, 10);
+		     -o-transform: translate3d(0%, 10, 10);
+		        transform: translate3d(0%, 10, 10);
+	}
+
+	
+	.right .modal-content {
+		height: 100%;
+		overflow-y: auto;
+	}
+	
+	
+	.right .modal-body {
+		padding: 15px 25px 15px 15px;
+	}
+   
+/*Right*/
+	.right.fade .modal-dialog {
+		right: 0px;
+		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+		        transition: opacity 0.3s linear, right 0.3s ease-out;
+	}
+	
+.right.fade.in .modal-dialog {
+		right: 0;
+	} */
+
+/* ----- MODAL STYLE ----- */
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+
+	.modal-header {
+		border-bottom-color: #EEEEEE;
+		background-color: #FAFAFA;
+    padding: 15px 25px 15px 15px;
+	}
+/*shopping cart badge*/
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+.lblCartCount {
+    font-size: 12px;
+    padding:  3px 4px;
+    vertical-align: top;
+    margin-left: -10px; 
+    margin-top: -10px;
+}
+
+
+.btn-demo {
+	margin: 15px;
+	padding: 10px 15px;
+	border-radius: 0;
+	font-size: 16px;
+	background-color: #FFFFFF;
+}
+
+.btn-demo:focus {
+	outline: 0;
+  box-shadow: inset 0 0 0 0;
+}
+@media only screen and (max-width: 768px) {
+ .right .modal-dialog {
+     width: 100%;
+   
+  }
+
+}
+/*Cart table*/
+.cart-table thead tr .product{
+  width:40%;
+}
+.cart-table tbody tr td{
+  font-size: 13px;
+}
+.btn-circle {
+    width: 20px;
+    height: 20px;
+    padding: 1px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+.nav-menu li a{
+font-size:12px;
+color:black;
+}
+
+#loader-div{
+  position:relative;
+  height:100%;
+  width:100%;
+  z-index: 9999;
+  background-color: #000;
+  opacity:0.8;
+}
+#loader{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  margin:auto
+}
