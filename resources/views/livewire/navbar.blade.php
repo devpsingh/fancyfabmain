@@ -38,7 +38,7 @@
       <ul class="navbar-nav">
         <li class="nav-item">
          <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#cart"><i class="fa" style="font-size:20px">&#xf07a;</i>
-            <span class='badge badge-primary lblCartCount'> 3 </span></button>
+            <span class='badge badge-primary lblCartCount'> {{Cart::count()}} </span></button>
         </li>
         <li class="nav-item ml-md-3 d-flex dropdown">
           <!-- <a class="btn btn-primary" href="#"><i class="fas fa-user-circle mr-1"></i> Log In / Register</a> -->
@@ -276,119 +276,75 @@
         <div class="modal-header">
           <div class="d-flex justify-content-between" style="width:70%;">
           <h6 class="modal-title" id="cartLabel">My Cart <i class="fa" style="font-size:20px">&#xf07a;</i>
-            <span class='badge badge-primary lblCartCount'> 6 </span></h6>
-             <h6 class="modal-title " id="cartLabel">Grand Total: <i class="fas fa-rupee-sign"></i>
-            <span style="font-weight: 900;color:purple;"> 2394.00</span></h6>
+            <span class='badge badge-primary lblCartCount'> {{Cart::count()}}
+           </span></h6>
+             <h6 class="modal-title " id="cartLabel">Grand Total: <i class="fas fa-pound-sign"></i>
+            <b style="font-weight: 600;color:purple;font-size:18px;">{{Cart::subtotal()}}</b></h6>
             </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           
         </div>
 
         <div class="modal-body" style="overflow-y: scroll">
-          <table class="table cart-table" style="border:none;">
+        @if(Cart::count()>0)
+        <table class="table cart-table ajaxed" id="edd_checkout_cart" style="border:none;font-size:10px;">
           
-            <thead>
-              <tr>
-                <th class="product">Product</th>
-                <th class="price">Price</th>
-                <th class="qty">Quantity</th>
-                <th class="total">Total</th>
-                <th class="act">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="product">
-                  <img src="{{asset('img/neckles.png')}}" style="width:50px;height:50px;" alt="product">
-                  This is product info will be seen here
-                </td>
-                 <td>399.00 INR</td>
-                  <td>
-                    <button class="btn btn-outline-danger btn-circle" wire:click="decrement"><i class="fas fa-minus"></i></button>
-                          {{$count}}
-                    <button  class="btn btn-outline-danger btn-circle" wire:click="increment"><i class="fas fa-plus"></i></button>
-                  </td>
-                   <td>399.00 INR</td>
-                    <td><button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-              </tr>
+          <thead>
+            <tr>
+              <th class="product">Product</th>
+              <th class="price">Name</th>
+              <th class="qty">Quantity</th>
+              <th class="total">price</th>
+              <th class="total">Total</th>
+              <th class="act">Action</th>
+            </tr>
+          </thead>
+           <tbody>
+         
+            @foreach(Cart::content() as $row)
+           
               <tr>
                 <td class="product">
-                  <img src="{{asset('img/neckles.png')}}" style="width:30px;height:30px;" alt="product">
-                  This is product info will be seen here
+                  <img src="{{asset('storage/products/'.$row->options->img[1])}}" style="width:30px;height:30px;" alt="product">
+                  {{$row->options->desc}}
                 </td>
-                 <td>399.00 INR</td>
-                  <td>
-                    <button class="btn btn-outline-danger btn-circle" wire:click="decrement"><i class="fas fa-minus"></i></button>
-                          {{$count}}
-                    <button  class="btn btn-outline-danger btn-circle" wire:click="increment"><i class="fas fa-plus"></i></button>
-                  </td>
-                   <td>399.00 INR</td>
-                    <td><button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                <td>{{$row->name}}</td>
+                
+                  <td><input type="number" value="{{$row->qty}}" style="width:35px;border:1px solid red;padding-left:10px;padding-right:10"></td>
+                  
+                  <td>{{$row->price}}</td>
+                  <td>{{$row->price*$row->qty}}</td>
+                    <td><button wire:click.prevent="RemoveCart('{{$row->rowId}}')" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                   </td>
               </tr>
-              <tr>
-                <td class="product">
-                  <img src="{{asset('img/neckles.png')}}" style="width:30px;height:30px;" alt="product">
-                  This is product info will be seen here
-                </td>
-                 <td>399.00 INR</td>
-                  <td>
-                    <button class="btn btn-outline-danger btn-circle" wire:click="decrement"><i class="fas fa-minus"></i></button>
-                          {{$count}}
-                    <button  class="btn btn-outline-danger btn-circle" wire:click="increment"><i class="fas fa-plus"></i></button>
-                  </td>
-                   <td>399.00 INR</td>
-                    <td><button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-              </tr>
-               <tr>
-                <td class="product">
-                  <img src="{{asset('img/neckles.png')}}" style="width:30px;height:30px;" alt="product">
-                  This is product info will be seen here
-                </td>
-                 <td>399.00 INR</td>
-                  <td>
-                    <button class="btn btn-outline-danger btn-circle" wire:click="decrement"><i class="fas fa-minus"></i></button>
-                          {{$count}}
-                    <button  class="btn btn-outline-danger btn-circle" wire:click="increment"><i class="fas fa-plus"></i></button>
-                  </td>
-                   <td>399.00 INR</td>
-                    <td><button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-              </tr>
-               <tr>
-                <td class="product">
-                  <img src="{{asset('img/neckles.png')}}" style="width:30px;height:30px;" alt="product">
-                  This is product info will be seen here
-                </td>
-                 <td>399.00 INR</td>
-                  <td>
-                    <button class="btn btn-outline-danger btn-circle" wire:click="decrement"><i class="fas fa-minus"></i></button>
-                          {{$count}}
-                    <button  class="btn btn-outline-danger btn-circle" wire:click="increment"><i class="fas fa-plus"></i></button>
-                  </td>
-                   <td>399.00 INR</td>
-                    <td><button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-              </tr>
-               <tr>
-                <td class="product">
-                  <img src="{{asset('img/neckles.png')}}" style="width:30px;height:30px;" alt="product">
-                  This is product info will be seen here
-                </td>
-                 <td>399.00 INR</td>
-                  <td>
-                    <button class="btn btn-outline-danger btn-circle" wire:click="decrement"><i class="fas fa-minus"></i></button>
-                          {{$count}}
-                    <button  class="btn btn-outline-danger btn-circle" wire:click="increment"><i class="fas fa-plus"></i></button>
-                  </td>
-                   <td>399.00 INR</td>
-                    <td><button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                  </td>
-              </tr>
-            </tbody>
-          </table>
+              @endforeach
+             </tbody> 
+          <tfoot>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+            <td colspan="2">Base Price</td>
+            <td colspan="2"><?php echo round((Cart::subtotal()*100)/(20+100),2) ?></td>
+            
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+            <td colspan="2">Tax</td>
+            <td colspan="2"><?php echo round((Cart::subtotal()*100)/(20+100)*(20/100),2)?></td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+            <td colspan="2">Grand Total</td>
+            <td colspan="2"><?php echo Cart::subtotal(); ?></td>
+          </tr>
+        </tfoot> 
+          <tbody>
+     
+   </tbody>
+        </table>
+        @else
+              <h3>Empty cart</h3>
+            @endif
+          
         </div>
           <div class="modal-footer justify-content-between">
            <button class="btn btn-danger"  data-dismiss="modal" aria-label="Close">

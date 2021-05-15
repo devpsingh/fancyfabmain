@@ -11,8 +11,8 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
         <link href="{{asset('css/footer.css')}}" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
+        <link href="{{asset('css/owl.carousel.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/owl.theme.default.min.css')}}" rel="stylesheet">
         @livewireStyles
         <!-- Styles -->
         <style>
@@ -65,11 +65,12 @@ span {
 @livewire('welcome-body')
 @livewire('footer')
 
+@livewireScripts
 <script src="{{asset('js/jquery-3.5.min.js')}}"></script>
 <script src="{{asset('js/welcome.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script>
-  
+ 
     $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,

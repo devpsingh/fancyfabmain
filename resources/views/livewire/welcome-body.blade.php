@@ -1,12 +1,12 @@
 <div>
-<div class="d-flex" style="margin-top:15%">
-</div>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
+    <div class="d-flex" style="margin-top:15%">
+ 
+        <div id="carouselExampleIndicators" class="carousel slide w-100" data-ride="carousel">
+          <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
         <div class="carousel-inner ">
             <div class="carousel-item active">
             <img class="d-block " src="{{asset('storage/carousel/cr-1.jpg')}}" alt="First slide">
@@ -40,7 +40,7 @@
             <span class="sr-only">Next</span>
         </a>
         </div>
-    </div>
+      </div>
 
     
 <!-- Item slider-->
@@ -87,6 +87,7 @@
   <div class="d-flex justify-content-left">
     <h5>In demand</h5>
   </div>
+
   <div class="row p-3">
   @if($demand)
     @foreach($demand as $pd)
@@ -103,7 +104,9 @@
             <div class="buy d-flex justify-content-between align-items-center">
               <div class="price text-success"><h6 class="mt-1">&#163; {{$pd['price']}}</h6></div>
               <div class="price text-danger"><h6 class="mt-1">&#163; <strike> {{$pd['price']+1.99}}</strike></h6></div>
-              <button class="btn btn-danger">Add to cart</button>
+             
+              <button type="button" class="btn btn-danger" wire:click="addToCart({{$pd->id}})">Add to cart</button>
+              
             </div>
         </div>
       </div>
@@ -114,6 +117,7 @@
   @endif
     
   </div><!--row-->
+  
 </div>
 <div class="container-fluid">
   <div class="row">
@@ -149,6 +153,6 @@
       @endforeach
     @endforeach
   @endif
-	
+</div>
 
 </div>
