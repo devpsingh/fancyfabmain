@@ -16,7 +16,7 @@ class Addcategory extends Component
     }
     public function updated($field)
     {
-        $this->validateOnly($field,[ 'category'=>'required|min:3|max:20','maincategory'=>'required',]);
+        $this->validateOnly($field,[ 'category'=>'required|min:3|max:40','maincategory'=>'required',]);
     }
     public function createCategory()
     {

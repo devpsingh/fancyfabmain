@@ -15,11 +15,11 @@
                 <label for="main">Selecte main category</label>
                     <select class="form-control" wire:model="maincategory">
                         <option>Select main category</option>
-                        <option value="Collection">Collection</option>
-                        <option value="Jewellery">Jewellery</option>
-                        <option value="American Diamond">American Diamond</option>
-                        <option value="Bridal">Bridal</option>
-                        <option value="Antique">Antique</option>
+                        <option value="shopeall">Shop All</option>
+                        <option value="collection">Collection</option>
+                        <option value="bridal">Bridal</option>
+                        <option value="antique">Antique</option>
+                        <option value="clearance">Clearance</option>
                     </select>
                     @error('maincategory') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>

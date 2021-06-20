@@ -1,111 +1,95 @@
 <div>
-<footer class="footer-section">
-        <div class="container">
-            <div class="footer-cta pt-5 pb-5">
+<!-- Start Footer  -->
+<footer class="footer-widget-area">
+        <div class="footer-top">
+            <div class="container">
                 <div class="row">
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="cta-text">
-                                <h4>Find us</h4>
-                                <span>1010 Avenue, sw 54321, Jaipur</span>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget-item">
+                            <div class="widget-title">
+                                <div class="widget-logo">
+                                    <a href="index.html">
+                                        <img src="images/LOGO.svg" alt="brand logo">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <p>We are a team of designers and developers that create high quality wordpress,
+                                    shopify, Opencart </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="fas fa-phone"></i>
-                            <div class="cta-text">
-                                <h4>Call us</h4>
-                                <span>9876543210</span>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget-item">
+                            <h6 class="widget-title">Contact Us</h6>
+                            <div class="widget-body">
+                                <address class="contact-block">
+                                    <ul>
+                                        <li> <img src="images/home.svg" alt=""> Your address goes here.</li>
+                                        <li> <img src="images/mail.svg" alt=""> <a href="mailto:demo@plazathemes.com">demo@example.com </a></li>
+                                        <li> <img src="images/call.svg" alt=""> <a href="tel:0123456789">0123456789</a>
+                                        </li>
+                                    </ul>
+                                </address>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="far fa-envelope-open"></i>
-                            <div class="cta-text">
-                                <h4>Mail us</h4>
-                                <span>mail@info.com</span>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget-item">
+                            <h6 class="widget-title">Information</h6>
+                            <div class="widget-body">
+                                <ul class="info-list">
+                                    <li><a href="#">about us</a></li>
+                                    <li><a href="#">Delivery Information</a></li>
+                                    <li><a href="#">privet policy</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">contact us</a></li>
+                                    <li><a href="#">site map</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget-item">
+                            <h6 class="widget-title">Follow Us</h6>
+                            <div class="widget-body social-link">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-flickr"></i></a>
+                                <a href="#"><i class="fas fa-rss"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="footer-content pt-5 pb-5">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 mb-50">
-                        <div class="footer-widget">
-                            <div class="footer-logo">
-                                <a href="index.html">FancyFab</a>
-                            </div>
-                            <div class="footer-text">
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                                elit,Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div class="footer-social-icon">
-                                <span>Follow us</span>
-                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
-                            </div>
+                <div class="row align-items-center mt-20">
+                    <div class="col-md-6">
+                        <div class="newsletter-wrapper">
+                            <h6 class="widget-title-text">Signup for newsletter</h6>
+                            <form class="newsletter-inner" id="mc-form" novalidate="true">
+                                <input type="email" class="news-field" id="mc-email" autocomplete="off" placeholder="Enter your email address" name="EMAIL">
+                                <button class="news-btn" id="mc-submit">Subscribe</button>
+                            </form>
+                            
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                        <div class="footer-widget">
-                            <div class="footer-widget-heading">
-                                <h3>Useful Links</h3>
-                            </div>
-                            <ul class="footer-ul">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">about</a></li>
-                                <li><a href="#">services</a></li>
-                                <li><a href="#">portfolio</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">Expert Team</a></li>
-                                <li><a href="#">Contact us</a></li>
-                                <li><a href="#">Latest News</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                        <div class="footer-widget">
-                            <div class="footer-widget-heading">
-                                <h3>Subscribe</h3>
-                            </div>
-                            <div class="footer-text mb-25">
-                                <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
-                            </div>
-                            <div class="subscribe-form">
-                                <form action="#">
-                                    <input type="text" placeholder="Email Address">
-                                    <button><i class="fab fa-telegram-plane"></i></button>
-                                </form>
-                            </div>
+                    <div class="col-md-6">
+                        <div class="footer-payment">
+                            <img src="images/payment.png" alt="payment method">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="copyright-area">
+        <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                        <div class="copyright-text">
-                            <p>Copyright &copy; 2021, All Right Reserved Dev</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Policy</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
+                    <div class="col-12">
+                        <div class="copyright-text text-center">
+                        <p class="footer-company">All Rights Reserved. &copy; @php echo date('Y'); @endphp <a href="#">FancyFab</a> Developed By :
+            <a href="#">Dev Pratap singh</a></p>
                         </div>
                     </div>
                 </div>
