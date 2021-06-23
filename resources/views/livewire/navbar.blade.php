@@ -109,7 +109,7 @@
                         <li class="side-menu">
                             <a href="#" class="minicart-btn">
                                 <img src="images/shopbag.svg" alt=""> 
-                                <div class="notification">2</div>
+                                <div class="notification">{{Cart::count()}}</div>
                             </a>
                         </li>
                     </ul>
