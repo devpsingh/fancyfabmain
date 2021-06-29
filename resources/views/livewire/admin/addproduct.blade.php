@@ -69,15 +69,16 @@
                     <option value="1">Available</option>
                     <option value="0">Un available</option>
                     </select>
-                    @error('availabilitiy') <span class="text-danger error">{{ $message }}</span> @enderror
+                    @error('availability') <span class="text-danger error">{{ $message }}</span> @enderror
                 </div>
                 </div>
                 <div class="form-group">
                     <label for="productimage">choose image to upload</label>
-                    <input type="file" wire:model="productimage" name="productimage" class="form-control-file" id="productimage" multiple>
-                    @error('productimage.*') <span class="text-danger error">{{ $message }}</span> @enderror
-                    <div wire:loading wire:target="productimage" id="loader-div" class="text-sm text-gray-500 italic">
-                    <img src="{{asset('/storage/icons/loader.gif')}}" id="loader" /></div>
+                    <input type="file" wire:model="images" name="images" class="form-control-file" id="productimage" multiple>
+                    @error('image.*') <span class="text-danger error">{{ $message }}</span>@enderror
+                    <div wire:loading wire:target="images" id="loader-div" class="text-sm text-gray-500 italic">
+                    <!-- <img src="{{asset('/storage/icons/loader.gif')}}" id="loader" /> -->Loading please wait...
+                    </div>
                
                 </div>
                 

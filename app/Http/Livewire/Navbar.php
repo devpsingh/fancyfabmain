@@ -17,7 +17,7 @@ class Navbar extends Component
     {
         
         Cart::remove($rowid);
-        return redirect()->back();
+        return redirect('/');
     }
 }
  
