@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/fancyfab/fancyfabmain/
+    - export DEPLOYPATH=/home/fdhutbwz/fancyfabmain/
     - /bin/cp * $DEPLOYPATH
     
