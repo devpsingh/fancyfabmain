@@ -6,16 +6,15 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use Image;
 class Addproduct extends Component
 {
     use WithFileUploads;
-    public $productimage=[];
+    public $images=[];
     public $product_name,$price,$quantity,$code,$availability,$product_category,
-    $description;
+    $description,$category;
   
-    public $category;
-
-
     public function render()
     {
         $this->category=Category::all();
@@ -33,7 +32,7 @@ class Addproduct extends Component
             'product_category'=>'required',
             'code' => 'required|max:8|min:3|unique:products',
             'product_name' => 'required|max:20',
-            'productimage.*' => 'required|image|mimes:jpeg,png,jpg|max:1096',
+            'images.*' => 'required | mimes:jpeg,jpg,png | max:5000',
             'description'=>'required|max:200',
             'quantity' => 'required',
             'price' => 'required',           
@@ -48,31 +47,37 @@ class Addproduct extends Component
             'product_category'=>'required',
             'code' => 'required|max:8|min:3|unique:products',
             'product_name' => 'required',
-            'productimage.*' => 'required|image|mimes:jpeg,png,jpg|max:1096',
+            'images.*' => 'required | mimes:jpeg,jpg,png | max:5000',
             'description'=>'required',
             'quantity' => 'required',
             'price' => 'required',           
             'availability'=>'required',
             
         ]);
-            
-        foreach($this->productimage as $key=>$value)
+        //dd($this->images);  
+        foreach($this->images as $key=>$value)
         {
-          
-           $name = 'FFB-'.mt_rand(1,99999).'.'.$value->extension();
-           $value->storeAs('public/products', $name);
-           $this->productimage[$key] = $name;
+            $img = Image::make($value->getRealPath())->encode('jpg', 65)->fit(800, null, function ($c) {
+                $c->aspectRatio();
+                $c->upsize();
+            });
+            $img->stream();
+           $name = 'FFB-'.mt_rand(1,9999999).'.'.$value->extension();
+           //$value->storeAs('public/products', $name);
+           Storage::disk('local')->put('public/products/' . '/' . $name, $img, 'public');
+           $this->images[$key] = $name;
+           
             
         }
           $all=Product::all();
           $images = array();
-          if($validatedData)
+          if($validatedData && !empty($this->images))
           {
             Product::create([
                 'category_id'=>$this->product_category,
                 'code'=>$this->code,
                 'product_name'=>$this->product_name,
-                'thumbnail_path'=> json_encode($this->productimage),
+                'thumbnail_path'=> json_encode($this->images),
                 'product_desc'=>$this->description,
                 'qty'=>$this->quantity,
                 'price'=>$this->price,

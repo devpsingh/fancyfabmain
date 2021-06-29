@@ -13,11 +13,13 @@ class WelcomeBody extends Component
     {
         $firstCarousel = PD::inRandomOrder()->limit(10)->get();
         $secondCarousel = PD::orderBy('id', 'desc')->limit(10)->get();
-        $demand = PD::inRandomOrder()->limit(4)->get();
+        $demand = PD::inRandomOrder()->limit(8)->get();
+        $new = PD::orderBy('id', 'desc')->limit(20)->get();
         return view('livewire.welcome-body',[
             'products'=>$firstCarousel,
             'second'=>$secondCarousel,
             'demand'=>$demand,
+            'new'=>$new,
             ]);
     }
     public function addToCart($id)
@@ -40,12 +42,12 @@ class WelcomeBody extends Component
                 }
             }
         }
-        $path=json_decode($product->thumbnail_path);
-     
+        $images=json_decode($product->thumbnail_path);
+        $path=$images[0];
        Cart::add(['id' => $product->id, 'name' => $product->product_name, 
         'qty' => $qty,'options'=>['desc'=>$product->product_desc,'code'=>$product->code,'img' => $path], 'price' => $product->price
         ]);
         return redirect('/');
     }
-   
+    
 }

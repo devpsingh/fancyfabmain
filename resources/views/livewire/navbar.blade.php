@@ -107,7 +107,7 @@
                             </a>
                         </li>
                         <li class="side-menu">
-                            <a href="#" class="minicart-btn">
+                        <a href="#" class="minicart-btn" data-toggle="modal" data-target="#rightModal">
                                 <img src="images/shopbag.svg" alt=""> 
                                 <div class="notification">{{Cart::count()}}</div>
                             </a>
@@ -123,7 +123,7 @@
                     <div class="header-configure-area">
                         <ul class="nav justify-content-end">
                             <li>
-                                <a href="#" class="minicart-btn">
+                            <a href="#" class="minicart-btn" data-toggle="modal" data-target="#rightModal">
                                     <img src="images/shopbag.svg" alt=""> 
                                     <div class="notification">2</div>
                                 </a>
@@ -244,6 +244,80 @@
             </div>       
         </div>
     </header>
+<!-- --cart-model-- -->
+
+<div class="fab-menu-cart modal right fade" id="rightModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="minicart-close" data-dismiss="modal">
+                <img src="images/close.svg" alt="">
+            </div>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="minicart-content-box">
+                           <?php $sub=Cart::subtotal()+Cart::tax();?>
+                                    <?php 
+                                    if($sub !=0 )
+                                    {
+                                        $excludeTaxAmount=Cart::subtotal()*(Cart::subtotal()/$sub);
+                                    ?>
+                            <div class="minicart-item-wrapper">
+                                    <ul>
+                                    <?php foreach(Cart::content() as $row) :?>
+                                        <li class="minicart-item">
+                                            <div class="minicart-thumb">
+                                                <?php //echo '<pre>'; print_r($row->options->img); ?>
+                                                <a href="product-view.html">
+                                                    <img src="{{ asset('/storage/products/'.$row->options->img) }}" alt="{{$row->name}}">
+                                                </a>
+                                            </div>
+                                            <div class="minicart-content">
+                                                <h3 class="product-name">
+                                                    <a href="product-view.html"><?php echo $row->name; ?></a>
+                                                </h3>
+                                                <p>
+                                                    <span class="cart-quantity"><?php echo $row->qty; ?> <strong>×</strong></span>
+                                                    <span class="cart-price">$<?php echo $row->price   ; ?></span>
+                                                </p>
+                                            </div>
+                                            <button wire:click="RemoveCart('{{$row->rowId}}')" class="minicart-remove"><i class="fas fa-times"></i> </button>
+                                        </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                                        <div class="minicart-pricing-box">
+                                        <ul>
+                                            <li>
+                                            <span>sub-total</span>
+                                        
+                                            <span><strong>$<?php echo round($excludeTaxAmount,2); ?></strong></span>
+                                            </li>
+                                            <li>
+                                                <span>VAT (20%)</span>
+                                                <span><strong>$<?php echo round($excludeTaxAmount*.2,2); ?></strong></span>
+                                            </li>
+                                            <li class="total">
+                                                <span>total</span>
+                                                <span><strong>${{round($excludeTaxAmount,2)+round($excludeTaxAmount*.2,2)}}</strong></span>
+                                            </li>
+                                        </ul>
+                                        <div class="minicart-button">
+                                            <a href="cart.html"><i class="fa fa-shopping-cart"></i> View Cart</a>
+                                            <a href="cart.html"><i class="fa fa-share"></i> Checkout</a>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    }else{
+                                        echo '<h1>This cart is empty</h1>';
+                                    }
+                                     ?>
+                                    
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     
   </div>
