@@ -1,11 +1,11 @@
 <div>
 <header class="fancyfab-header">
         <nav class="navbar navbar-expand-lg fixed-top bg-white py-3 shadow-sm">
-            <a href="index.html" class="navbar-brand font-weight-bold mr-auto"> <img src="images/LOGO.svg" alt=""> </a>
+            <a href="index.html" class="navbar-brand font-weight-bold mr-auto"> <img src="{{asset('images/LOGO.svg')}}" alt=""> </a>
             <div id="navbarContent" class="collapse navbar-collapse order-sm-12 order-lg-1">
               <ul class="navbar-nav ml-auto">
                 <!-- Megamenu-->
-                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
                 <li class="nav-item dropdown megamenu"><a id="megamenu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Shop All <i class="fa fa-angle-down"></i> </a>
                   <div aria-labelledby="megamenu" class="dropdown-menu fab-dropdown border-0 rounded-0 p-0 m-0">
                     <div class="container-fluid">
@@ -15,11 +15,11 @@
                                 <div class="row">
                                  <div class="col-sm-6 col-lg-6">
                                     <ul class="list-unstyled">
-                                        @if(!empty($category))
+                                        @if(!empty($shopall))
                                             <?php $i=1 ?>
-                                            @foreach($category as $ctg)
-                                                @if($ctg->maincategory=="SHOPEALL" && $i<=6)
-                                                    <li class="nav-item"><a href="#" class="nav-link text-small pb-0">{{$ctg->category}} </a></li>
+                                            @foreach($shopall as $ctg)
+                                                @if($i<=6)
+                                                    <li class="nav-item"><a href="#" class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
                                                 @endif
                                                 <?php $i++ ?>
                                             @endforeach
@@ -28,11 +28,11 @@
                                 </div>
                                 <div class="col-sm-6 col-lg-6">
                                     <ul class="list-unstyled">
-                                        @if(!empty($category))
+                                        @if(!empty($shopall))
                                         <?php $i=1 ?>
-                                            @foreach($category as $ctg)
-                                                @if($ctg->maincategory=="SHOPEALL" && $i > 6 && $i<=12)
-                                                    <li class="nav-item"><a href="#" class="nav-link text-small pb-0">{{$ctg->category}} </a></li>
+                                            @foreach($shopall as $ctg)
+                                                @if($i > 6 && $i<=12)
+                                                    <li class="nav-item"><a href="#" class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
                                                 @endif
                                                 <?php $i++ ?>
                                             @endforeach
@@ -57,9 +57,9 @@
                                   <ul class="list-unstyled">
                                      @if(!empty($category))
                                             @foreach($category as $ctg)
-                                                @if($ctg->maincategory=="COLLECTION")
+                                        
                                                     <li class="nav-item"><a href="#" class="nav-link text-small pb-0">{{$ctg->category}} </a></li>
-                                                @endif
+                                                
                                             @endforeach
                                         @endif
                                     </ul>
@@ -90,7 +90,7 @@
                         <li class="user-hover">
                               <div class="dropdown">
                                 <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <img src="images/user-icon.svg" alt=""> 
+                                    <img src="{{asset('images/user-icon.svg')}}" alt=""> 
                                 </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -102,13 +102,13 @@
                         </li>
                         <li>
                             <a href="wishlist.html">
-                                <img src="images/like.svg" alt=""> 
+                                <img src="{{asset('images/like.svg')}}" alt=""> 
                                 <div class="notification">0</div>
                             </a>
                         </li>
                         <li class="side-menu">
                         <a href="#" class="minicart-btn" data-toggle="modal" data-target="#rightModal">
-                                <img src="images/shopbag.svg" alt=""> 
+                                <img src="{{asset('images/shopbag.svg')}}" alt=""> 
                                 <div class="notification">{{Cart::count()}}</div>
                             </a>
                         </li>
@@ -124,7 +124,7 @@
                         <ul class="nav justify-content-end">
                             <li>
                             <a href="#" class="minicart-btn" data-toggle="modal" data-target="#rightModal">
-                                    <img src="images/shopbag.svg" alt=""> 
+                                    <img src="{{asset('images/shopbag.svg')}}" alt=""> 
                                     <div class="notification">2</div>
                                 </a>
                             </li>
@@ -146,7 +146,7 @@
             <div class="mobile-menu">
                 <div id="overlay" onclick="closeNav()"></div>
                 <div>
-                    <div id="closeBtn" onclick="closeNav()"> <img src="images/close.svg" alt=""> </div>
+                    <div id="closeBtn" onclick="closeNav()"> <img src="{{asset('images/close.svg')}}" alt=""> </div>
                     <div class="sidenav" id="mySidenav">
                         <!--Below SideNavHeader-->
                     <div id="main-container">
@@ -154,11 +154,11 @@
                             <form class="hdmb-search-form" action="/search">
                                 <input type="text" placeholder="Start search ..." name="q" value="">
                                 <button type="submit" value="">
-                                    <img src="images/search.svg" alt="">
+                                    <img src="{{asset('images/search.svg')}}" alt="">
                                 </button>
                               </form> 
                         </div>
-                        <a href="#"><div class="sidenavContent">Home</div></a>
+                        <a href="/"><div class="sidenavContent">Home</div></a>
                         <a href="#" onclick="openShopAll()">
                             <div class="sidenavRow"><div>Shop All</div>
                             <span class="row-side-arw"><i class="fas fa-chevron-right"></i></span>
@@ -249,7 +249,7 @@
 <div class="fab-menu-cart modal right fade" id="rightModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="minicart-close" data-dismiss="modal">
-                <img src="images/close.svg" alt="">
+                <img src="{{asset('images/close.svg')}}" alt="">
             </div>
             <div class="modal-content">
                 <div class="modal-body">
@@ -276,7 +276,7 @@
                                                 </h3>
                                                 <p>
                                                     <span class="cart-quantity"><?php echo $row->qty; ?> <strong>×</strong></span>
-                                                    <span class="cart-price">$<?php echo $row->price   ; ?></span>
+                                                    <span class="cart-price"><i class="fas fa-pound-sign"></i> <?php echo $row->price   ; ?></span>
                                                 </p>
                                             </div>
                                             <button wire:click="RemoveCart('{{$row->rowId}}')" class="minicart-remove"><i class="fas fa-times"></i> </button>
@@ -289,15 +289,15 @@
                                             <li>
                                             <span>sub-total</span>
                                         
-                                            <span><strong>$<?php echo round($excludeTaxAmount,2); ?></strong></span>
+                                            <span><strong><i class="fas fa-pound-sign"></i> <?php echo round($excludeTaxAmount,2); ?></strong></span>
                                             </li>
                                             <li>
                                                 <span>VAT (20%)</span>
-                                                <span><strong>$<?php echo round($excludeTaxAmount*.2,2); ?></strong></span>
+                                                <span><strong><i class="fas fa-pound-sign"></i> <?php echo round($excludeTaxAmount*.2,2); ?></strong></span>
                                             </li>
                                             <li class="total">
                                                 <span>total</span>
-                                                <span><strong>${{round($excludeTaxAmount,2)+round($excludeTaxAmount*.2,2)}}</strong></span>
+                                                <span><strong><i class="fas fa-pound-sign"></i> {{round($excludeTaxAmount,2)+round($excludeTaxAmount*.2,2)}}</strong></span>
                                             </li>
                                         </ul>
                                         <div class="minicart-button">
