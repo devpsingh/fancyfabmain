@@ -70,7 +70,7 @@
                             <img src={{ asset('/storage/products/'.$images[0])}} class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="{{url('/view/product/'.$demands->id)}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="why-text">
                             <h4>{{$demands['product_name']}}</h4>
-                            <h5> ${{$demands['price']}}</h5>
+                            <h5> <i class="fas fa-pound-sign"></i> {{$demands['price']}}</h5>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                             <img src={{ asset('/storage/products/'.$images[0])}} class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="{{url('/view/product/'.$demands->id)}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="why-text">
                             <h4>{{$demands['product_name']}}</h4>
-                            <h5> ${{$demands['price']}}</h5>
+                            <h5> <i class="fas fa-pound-sign"></i> {{$demands['price']}}</h5>
                         </div>
                     </div>
                 </div>
@@ -127,19 +127,19 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="images/categories_img_01.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Catagory</a>
+                        <a class="btn hvr-hover" href="#">Bridal</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="images/categories_img_02.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Catagory</a>
+                        <a class="btn hvr-hover" href="#">Antique</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="images/categories_img_03.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Catagory</a>
+                        <a class="btn hvr-hover" href="#">Clearance</a>
                     </div>
                 </div>
             </div>

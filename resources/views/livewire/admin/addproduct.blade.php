@@ -22,12 +22,12 @@
 
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="product_category">Select Product category</label>
+                    <label for="product_category">Select collection category</label>
                     <select wire:model="product_category" class="form-control" name="product_category" id="product_category">
-                    <option>Select category</option>
+                    <option>Select collection category</option>
                 @if(!empty($category))
                     @foreach($category as $cat)
-                    <option value="{{ $cat->id }}">{{$cat->category}} ({{$cat->maincategory}})</option>
+                    <option value="{{ $cat->id }}">{{$cat->category}}</option>
                     @endforeach
                 @endif
                 @error('product_category') <span class="text-danger">{{ $message }}</span> @enderror

@@ -1,61 +1,94 @@
 <div>
 
-<div class="container-fluid" style="margin-top:300px;">
-	<div class="row">
-			<div class="col-md-8 pdp-image-gallery-block" >
-				<!-- Gallery  Thumbnail Images-->
-				<div class="gallery_pdp_container">
-					<div id="gallery_pdp">
-						@if($products)
-							@foreach($products as $pd)
-								@foreach(json_decode($pd->thumbnail_path) as $key=>$image)
-								@if($pd->available==1)
-								<a href="#"  data-image="{{ asset('/storage/products/'.$image)}}" data-zoom-image="{{ asset('/storage/products/'.$image)}}">
-								<img id=""  style="max-width:100px;border:1px solid black;margin:4px;margin-left:10%;" src="{{ asset('/storage/products/'.$image)}}" />
-								</a>
-								@endif
-								@endforeach
-							@endforeach
-						@endif
-					</div>
-					<!-- Up and down button for vertical carousel -->
-					<a href="#" id="ui-carousel-next" style="display: inline;"></a>
-					<a href="#" id="ui-carousel-prev" style="display: inline;"></a>
-				</div>
-
-				<!-- Gallery -->
-
-				<!-- gallery Viewer medium image -->
-				<div class="gallery-viewer">
+			
+<div class="product-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                    <div class="prod-slide-box">
 					@if($products)
 						@foreach($products as $pd)
-							@foreach(json_decode($pd->thumbnail_path) as $key=>$image)
-							@if($key==0 && $pd->available==1)
-							<img id="zoom_10"  src="{{ asset('/storage/products/'.$image)}}" data-zoom-image="{{ asset('/storage/products/'.$image)}}" />
-									<p class="hint-pdp-img">Roll over the image to zoom in</p>
+						@php $image=json_decode($pd->thumbnail_path); @endphp
+							@if($pd->available==1)
+							<div class="show" href="{{ asset('/storage/products/'.$image[0])}}">
+								<img src="{{ asset('/storage/products/'.$image[0])}}" id="show-img">
+							</div>
 							@endif
-							@endforeach
 						@endforeach
-					@endif
-				</div>
+					@endif  
+                          <!--image thumbnail -->
+                        
+                          <div class="small-img">
+                            <img src="{{asset('images/next-icon.png')}}" class="icon-left" alt="" id="prev-img">
+                                <div class="small-container">
+                                <div id="small-img-roll">
+								@if($products)
+									@foreach($products as $pd)
+										@foreach(json_decode($pd->thumbnail_path) as $key=>$image)
+										@if($pd->available==1)
+										<img src="{{ asset('/storage/products/'.$image)}}" class="show-small-img" alt="">
+										@endif
+										@endforeach
+									@endforeach
+								@endif
+                                </div>
+                                </div>
+                            <img src="{{asset('images/next-icon.png')}}" class="icon-right" alt="" id="next-img">
+                          </div>
+                    </div>
+                </div>
+				@if(!empty($products))
+							@foreach($products as $pd)
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <div class="pro-detail">
+                        <h1>{{$pd->product_name}}</h1>
+                        <div class="ratings d-flex">
+                            <span><i class="fas fa-star"></i></span>
+                            <span><i class="fas fa-star"></i></span>
+                            <span><i class="fas fa-star"></i></span>
+                            <span><i class="fas fa-star"></i></span>
+                            <span><i class="far fa-star"></i></span>
+                            <div class="pro-review">
+                                <span>1 Reviews</span>
+                            </div>
+                        </div>
+						
+                    <p class="price-prod"><i class="fas fa-pound-sign"></i> {{$pd->price}}</p>
+                    <p class="description">{{$pd->product_desc}}</p>
+                    <div id="product2">            
+                            <div class="product-rightinfo"> 
+                                    <div class="form-group cart-block">
+                                    <div class="quantity-cart-box d-flex align-items-center">
+                                        <h6 class="option-title">Qty:</h6>
+                                        <div class="pro-qty">
+                                            <span class="input-number-decrement" wire:click="decreaseQty">–</span>
+											<input  class="input-number" type="text" value="{{$quantity}}" min="0" max="10">
+											<span class="input-number-increment" wire:click="increaseQty">+</span>
+                                        </div>
+                                        <div class="action_link">
+                                            <button class="btn btn-cart2"  wire:click="addToCart({{$pd->id}})">Add to cart</button>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    </div>      
+                                    <div class="useful-links">
+                                        <a href="#" data-toggle="tooltip" title="" data-original-title="Compare" aria-describedby="tooltip178480"><i class="fas fa-sync-alt"></i> compare</a>
+                                        <a href="#" data-toggle="tooltip" title="" data-original-title="Wishlist"><i class="far fa-heart"></i> wishlist</a>
+                                    </div>
 
-				<!-- gallery Viewer -->
-			</div>
-			<div id="enlarge_gallery_pdp">
-				<div class="enl_butt">
-					<a class="enl_but enl_fclose" title="Close"></a>
-					<a class="enl_but enl_fright" title="Next"></a>
-					<a class="enl_but enl_fleft" title="Prev"></a>
-				</div>
-				<div class="mega_enl"></div>
-			</div>
-			
-		<div class="col-md-4">
-			right side
-		</div>
-	</div>
-</div>
-			
-
+                                    <div class="action_link check-out-pro">
+                                        <a class="btn btn-cart2" href="#">Check Out</a>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				@endforeach
+			@endif
+            </div>
+        </div>
+    </div>
 
 </div>
