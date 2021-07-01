@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Shopall;
+
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Image;
@@ -13,12 +15,16 @@ class Addproduct extends Component
     use WithFileUploads;
     public $images=[];
     public $product_name,$price,$quantity,$code,$availability,$product_category,
-    $description,$category;
+    $description,$category,$shopall,$shopall_category;
   
     public function render()
     {
         $this->category=Category::all();
-        return view('livewire.admin.addproduct',['category'=>$this->category]);
+        $this->shopall=Shopall::all();
+        return view('livewire.admin.addproduct',[
+            'category'=>$this->category,
+            'shopall'=>$this->shopall
+        ]);
     }
    
     /**
@@ -30,6 +36,7 @@ class Addproduct extends Component
     {
         $this->validateOnly($field,[
             'product_category'=>'required',
+            'shopall_category'=>'required',
             'code' => 'required|max:8|min:3|unique:products',
             'product_name' => 'required|max:20',
             'images.*' => 'required | mimes:jpeg,jpg,png | max:5000',
@@ -45,6 +52,7 @@ class Addproduct extends Component
     {
         $validatedData = $this->validate([
             'product_category'=>'required',
+            'shopall_category'=>'required',
             'code' => 'required|max:8|min:3|unique:products',
             'product_name' => 'required',
             'images.*' => 'required | mimes:jpeg,jpg,png | max:5000',
@@ -69,12 +77,11 @@ class Addproduct extends Component
            
             
         }
-          $all=Product::all();
-          $images = array();
           if($validatedData && !empty($this->images))
           {
             Product::create([
-                'category_id'=>$this->product_category,
+                'collection_id'=>$this->product_category,
+                'shopall_id'=>$this->shopall_category,
                 'code'=>$this->code,
                 'product_name'=>$this->product_name,
                 'thumbnail_path'=> json_encode($this->images),
@@ -85,7 +92,7 @@ class Addproduct extends Component
             ]);
             session()->flash('message', 'Product successfully Uploaded.');
           }
-            //dd($validatedData);
+            //dd($this->product_category,$this->shopall_category);
         
     }
 }
