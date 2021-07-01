@@ -25,12 +25,27 @@
                     <label for="product_category">Select collection category</label>
                     <select wire:model="product_category" class="form-control" name="product_category" id="product_category">
                     <option>Select collection category</option>
-                @if(!empty($category))
-                    @foreach($category as $cat)
-                    <option value="{{ $cat->id }}">{{$cat->category}}</option>
-                    @endforeach
-                @endif
-                @error('product_category') <span class="text-danger">{{ $message }}</span> @enderror
+                        @if(!empty($category))
+                            @foreach($category as $cat)
+                            <option value="{{ $cat->id }}">{{$cat->category}}</option>
+                            @endforeach
+                        @endif
+                        @error('product_category') <span class="text-danger">{{ $message }}</span> @enderror
+
+                    </select>
+                </div>
+                </div>
+                <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="product_category">Select collection category</label>
+                    <select wire:model="shopall_category" class="form-control" name="shopall_category" id="shopall_category">
+                    <option>Select shop all category</option>
+                        @if(!empty($shopall))
+                            @foreach($shopall as $cat)
+                            <option value="{{ $cat->id }}">{{$cat->categoryshopall}}</option>
+                            @endforeach
+                        @endif
+                        @error('shopall_category') <span class="text-danger">{{ $message }}</span> @enderror
 
                     </select>
                 </div>
