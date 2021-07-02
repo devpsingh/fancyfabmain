@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->integer('qty');
             $table->float('price');
             $table->boolean('available')->default(0);
+            $table->string('colors');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
         

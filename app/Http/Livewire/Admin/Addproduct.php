@@ -5,7 +5,8 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Shopall;
+use App\Models\shopall;
+use App\Models\Color;
 
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -14,16 +15,18 @@ class Addproduct extends Component
 {
     use WithFileUploads;
     public $images=[];
+    public $coloroptions=[];
     public $product_name,$price,$quantity,$code,$availability,$product_category,
     $description,$category,$shopall,$shopall_category;
   
     public function render()
     {
         $this->category=Category::all();
-        $this->shopall=Shopall::all();
+        $this->shopall=shopall::all();
         return view('livewire.admin.addproduct',[
             'category'=>$this->category,
-            'shopall'=>$this->shopall
+            'shopall'=>$this->shopall,
+            'colors'=>Color::all(),
         ]);
     }
    
@@ -44,6 +47,7 @@ class Addproduct extends Component
             'quantity' => 'required',
             'price' => 'required',           
             'availability'=>'required',
+            'coloroptions'=>'required',
         ]);
         
     }
@@ -60,19 +64,34 @@ class Addproduct extends Component
             'quantity' => 'required',
             'price' => 'required',           
             'availability'=>'required',
+            'coloroptions'=>'required',
             
         ]);
+        function generateRandomString($length = 25) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            return $randomString;
+        }
+        //usage 
+        
         //dd($this->images);  
         foreach($this->images as $key=>$value)
         {
-            $img = Image::make($value->getRealPath())->encode('jpg', 65)->fit(800, null, function ($c) {
+           /* $img = Image::make($value->getRealPath())->encode('jpg', 65)->fit(800, null, function ($c) {
                 $c->aspectRatio();
                 $c->upsize();
-            });
-            $img->stream();
-           $name = 'FFB-'.mt_rand(1,9999999).'.'.$value->extension();
+            });*/
+            $img = Image::make($value->getRealPath())->encode('jpg', 65)->resize(800,800);
+            //$thumb = Image::make($value->getRealPath())->encode('jpg', 65)->resize(200,200);
+            $imagename = generateRandomString(10);
+           $name = ''.$imagename.'-'.mt_rand(1,9999999).'.'.$value->extension();
            //$value->storeAs('public/products', $name);
            Storage::disk('local')->put('public/products/' . '/' . $name, $img, 'public');
+           //Storage::disk('local')->put('public/products/thumbnail/' . '/' . $name, $thumb, 'public');
            $this->images[$key] = $name;
            
             
@@ -89,10 +108,11 @@ class Addproduct extends Component
                 'qty'=>$this->quantity,
                 'price'=>$this->price,
                 'available'=>$this->availability,
+                'colors'=>serialize($this->coloroptions),
             ]);
             session()->flash('message', 'Product successfully Uploaded.');
           }
-            //dd($this->product_category,$this->shopall_category);
+            //dd($this->product_category,$this->shopall_category,$this->coloroptions);
         
     }
 }

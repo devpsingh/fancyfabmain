@@ -4,13 +4,15 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Category;
-use App\Models\Shopall;
+use App\Models\shopall;
+use App\Models\Color;
 use Illuminate\Support\Str;
 
 class Addcategory extends Component
 {
     public $category=null;
     public $categoryshopall=null;
+    public $colorname,$colorcode;
     public function render()
     {
         return view('livewire.admin.addcategory');
@@ -20,6 +22,8 @@ class Addcategory extends Component
         $this->validateOnly($field,[
              'category'=>'required|min:3|max:100 |unique:categories',
              'categoryshopall'=>'required|min:3|max:100 |unique:shopalls',
+             'colorname'=>'required|min:3|max:100|unique:colors',
+                'colorcode'=>'required|min:6|max:6|unique:colors',
             ]);
     }
     public function createCategory()
@@ -43,11 +47,26 @@ class Addcategory extends Component
         ]);
         if($validate)
         {
-            Shopall::create([
+            shopall::create([
                 'categoryshopall'=>Str::upper($this->categoryshopall)
                 ]);
             session()->flash('message', 'For Shop all "'.$this->categoryshopall.'" has been added successfully.');
         }
         
+    }
+    public function Color()
+    {
+        $validate = $this->validate([
+            'colorname'=>'required|min:3|max:100|unique:colors',
+            'colorcode'=>'required|min:6|max:6|unique:colors',
+        ]);
+        if($validate)
+        {
+            Color::create([
+                'colorname'=>Str::ucfirst($this->colorname),
+                'colorcode'=>$this->colorcode,
+                ]);
+            session()->flash('message', 'Color option has been added successfully.');
+        } 
     }
 }

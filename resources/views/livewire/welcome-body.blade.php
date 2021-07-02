@@ -60,7 +60,7 @@
             @if(!empty('demand'))
                     @foreach($demand as $demands)
                         <?php $images=json_decode($demands['thumbnail_path']); ?>
-                            
+             @if($demands['available']==1)      
                 <div class="col-lg-3 col-md-6 special-grid best-seller">
                     <div class="products-single fix">
                         <div class="box-img-hover">
@@ -83,13 +83,13 @@
                         </div>
                     </div>
                 </div>
-
+            @endif
                 @endforeach
             @endif
             @if(!empty('new'))
                     @foreach($new as $demands)
                         <?php $images=json_decode($demands['thumbnail_path']); ?>
-                            
+                @if($demands['available']==1)      
                 <div class="col-lg-3 col-md-6 special-grid top-featured">
                     <div class="products-single fix">
                         <div class="box-img-hover">
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-
+                @endif
                 @endforeach
             @endif
             </div>
