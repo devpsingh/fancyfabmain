@@ -50,6 +50,23 @@
                     </select>
                 </div>
                 </div>
+                @if($colors)
+                <div class="row">
+                <div class="dropdown  col-md-12">
+                    <button class="btn btn-outline-secondary dropdown-toggle" style="width:100%;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose available color options(s) 
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width:100%;">
+                        @foreach($colors as $color)
+                        <a class="dropdown-item" href="#">
+                        <input type="checkbox" value="{{$color->id}}" id="{{$color->id}}" wire:model="coloroptions" />
+                        <label for="{{$color->id}}"> {{$color->colorname}}</label></a>
+                        @endforeach
+                    </div>
+                    </div>
+                    @endif
+                    @error('coloroptions') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
                 <div class="form-group">
                     <label for="description">Enter produt description</label>
                     <textarea name="description" class="form-control" id="description" wire:model="description"></textarea>
@@ -102,4 +119,11 @@
             </div>
         </div>
     </div>
+    <script>
+    $(document).ready(function() {
+        $('#multiple-checkboxes').multiselect({
+          includeSelectAllOption: true,
+        });
+});
+    </script>
 </div>

@@ -18,5 +18,6 @@ class Product extends Model
         'qty',
         'price',
         'available',
+        'colors',
     ];
 }
