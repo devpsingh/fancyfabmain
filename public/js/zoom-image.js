@@ -6,10 +6,10 @@
     $.fn.zoomImage = function(paras) {
        
         var defaultParas = {
-            layerW: 100, 
-            layerH: 100, 
+            layerH: 180, 
+            layerW: 180, 
             layerOpacity: 0.2, 
-            layerBgc: '#000', 
+            // layerBgc: '#000', 
             showPanelW: 400, 
             showPanelH: 400, 
             marginL: 5, 
@@ -54,7 +54,7 @@
                 width: paras.layerW,
                 height: paras.layerH,
                 opacity: paras.layerOpacity,
-                border: '1px solid #ccc',
+                // border: '1px solid #ccc',
                 cursor: 'crosshair'
             });
 
