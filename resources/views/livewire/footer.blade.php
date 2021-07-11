@@ -8,8 +8,8 @@
                         <div class="widget-item">
                             <div class="widget-title">
                                 <div class="widget-logo">
-                                    <a href="index.html">
-                                        <img src="images/LOGO.svg" alt="brand logo">
+                                    <a href="{{url('/')}}">
+                                        <img src="{{asset('images/LOGO.svg')}}" alt="brand logo">
                                     </a>
                                 </div>
                             </div>

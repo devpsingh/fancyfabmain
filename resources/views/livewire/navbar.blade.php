@@ -1,11 +1,11 @@
 <div>
 <header class="fancyfab-header">
         <nav class="navbar navbar-expand-lg fixed-top bg-white py-3 shadow-sm">
-            <a href="index.html" class="navbar-brand font-weight-bold mr-auto"> <img src="{{asset('images/LOGO.svg')}}" alt=""> </a>
+            <a href="{{url('/')}}" class="navbar-brand font-weight-bold mr-auto"> <img src="{{asset('images/LOGO.svg')}}" alt=""> </a>
             <div id="navbarContent" class="collapse navbar-collapse order-sm-12 order-lg-1">
               <ul class="navbar-nav ml-auto">
                 <!-- Megamenu-->
-                <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="{{url('/')}}" class="nav-link active">Home</a></li>
                 <li class="nav-item dropdown megamenu"><a id="megamenu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Shop All <i class="fa fa-angle-down"></i> </a>
                   <div aria-labelledby="megamenu" class="dropdown-menu fab-dropdown border-0 rounded-0 p-0 m-0">
                     <div class="container-fluid">
@@ -18,8 +18,9 @@
                                         @if(!empty($shopall))
                                             <?php $i=1 ?>
                                             @foreach($shopall as $ctg)
+                                        
                                                 @if($i<=6)
-                                                    <li class="nav-item"><a href="#" class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
+                                                    <li class="nav-item"><a href="#" wire:click="ShowProducts({{$ctg->id}})" class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
                                                 @endif
                                                 <?php $i++ ?>
                                             @endforeach
@@ -32,7 +33,7 @@
                                         <?php $i=1 ?>
                                             @foreach($shopall as $ctg)
                                                 @if($i > 6 && $i<=12)
-                                                    <li class="nav-item"><a href="#" class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
+                                                    <li class="nav-item"><a href="#" wire:click="ShowProducts({{$ctg->id}})"  class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
                                                 @endif
                                                 <?php $i++ ?>
                                             @endforeach
@@ -58,7 +59,7 @@
                                      @if(!empty($category))
                                             @foreach($category as $ctg)
                                         
-                                                    <li class="nav-item"><a href="#" class="nav-link text-small pb-0">{{$ctg->category}} </a></li>
+                                                    <li class="nav-item"><a href="#" wire:click="ShowCategory({{$ctg->id}})"  class="nav-link text-small pb-0">{{$ctg->category}} </a></li>
                                                 
                                             @endforeach
                                         @endif
@@ -89,15 +90,34 @@
                         </li>
                         <li class="user-hover">
                               <div class="dropdown">
-                                <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                    <img src="{{asset('images/user-icon.svg')}}" alt=""> 
-                                </a>
                                 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">login</a>
-                                  <a class="dropdown-item" href="#">register</a>
-                                  <a class="dropdown-item" href="#">my account</a>
-                                </div>
+                                @if(Auth::check())
+                                    <?php $firstname = preg_replace("/\s.*/", '', ltrim(Auth::user()->name)); ?>
+                                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                        {{ucfirst($firstname)}} <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> My account</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i> {{ __('Logout') }}</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                        
+                                    </div>
+                                 @else
+                                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                        <img src="{{asset('images/user-icon.svg')}}" alt=""> 
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    @if (Route::has('login'))
+                                        <a class="dropdown-item" href="{{route('login')}}"><i class="fas fa-user-plus"></i> Login</a>
+                                    @endif
+                                    @if (Route::has('register'))
+                                        <a class="dropdown-item" href="{{route('register')}}"><i class="fas fa-users"></i> Register</a>
+                                     @endif   
+                                    </div>
+                                @endif
                               </div>
                         </li>
                         <li>
@@ -301,8 +321,8 @@
                                             </li>
                                         </ul>
                                         <div class="minicart-button">
-                                            <a href="cart.html"><i class="fa fa-shopping-cart"></i> View Cart</a>
-                                            <a href="cart.html"><i class="fa fa-share"></i> Checkout</a>
+                                            <a href="{{route('showcart')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
+                                            <a href="{{route('stripe')}}"><i class="fa fa-share"></i> Checkout</a>
                                         </div>
                                     </div>
                                     <?php

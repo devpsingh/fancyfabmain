@@ -14,7 +14,8 @@ class Viewcategory extends Component
     
     public function render(Request $req)
     {
-        $products = PD::where('category_id',$req->route('slug'))->paginate(1);
-        return view('livewire.viewcategory',['products'=>$products]);
+         $products = PD::where('collection_id',$req->route('slug'))->paginate(1);
+        $totalproducts = PD::where('collection_id',$req->route('slug'))->get()->count();
+        return view('livewire.viewcategory',['products'=>$products,'totalproducts'=>$totalproducts]);
     }
 }
