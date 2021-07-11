@@ -3,11 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Http\Request;
+use App\Models\Product as PD;
+use Livewire\WithPagination; 
 
 class ProductGrid extends Component
 {
-    public function render()
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public function render(Request $req)
     {
-        return view('livewire.product-grid');
+        $products = PD::where('shopall_id',$req->route('slug'))->paginate(1);
+        $totalproducts = PD::where('shopall_id',$req->route('slug'))->get()->count();
+        return view('livewire.product-grid',['products'=>$products,'totalproducts'=>$totalproducts]);
     }
 }
