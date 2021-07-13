@@ -10,7 +10,7 @@ use App\Models\Color;
 
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
-use Image;
+
 class Addproduct extends Component
 {
     use WithFileUploads;
@@ -76,22 +76,13 @@ class Addproduct extends Component
             }
             return $randomString;
         }
-        //usage 
         
-        //dd($this->images);  
         foreach($this->images as $key=>$value)
         {
-           /* $img = Image::make($value->getRealPath())->encode('jpg', 65)->fit(800, null, function ($c) {
-                $c->aspectRatio();
-                $c->upsize();
-            });*/
-            $img = Image::make($value->getRealPath())->encode('jpg', 65)->resize(800,800);
-            //$thumb = Image::make($value->getRealPath())->encode('jpg', 65)->resize(200,200);
+           
             $imagename = generateRandomString(10);
            $name = ''.$imagename.'-'.mt_rand(1,9999999).'.'.$value->extension();
-           //$value->storeAs('public/products', $name);
-           Storage::disk('local')->put('public/products/' . '/' . $name, $img, 'public');
-           //Storage::disk('local')->put('public/products/thumbnail/' . '/' . $name, $thumb, 'public');
+           $value->storeAs('public/products', $name);
            $this->images[$key] = $name;
            
             
