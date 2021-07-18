@@ -93,38 +93,6 @@ function openDd(){
 }
 
 
-//subNavContent
-
-function openShopAll() {
-	document.getElementById("shopeall").style.display = "block";
-	document.getElementById("ad").style.display = "none";
-    document.getElementById("shop-all-content").innerHTML = `
-    <a href="#" class="nav-link text-small pb-0">Nacklace Set </a>
-    <a href="#" class="nav-link text-small pb-0 ">Choker Set</a>
-    <a href="#" class="nav-link text-small pb-0 ">Pandent Set  </a>
-    <a href="#" class="nav-link text-small pb-0 ">Long Pandent Set </a>
-    <a href="" class="nav-link text-small pb-0 ">Jhumar/passa</a>
-    <a href="" class="nav-link text-small pb-0 ">Head Pieces/matha Patti</a>
-    <a href="" class="nav-link text-small pb-0 ">Earings </a>
-    <a href="" class="nav-link text-small pb-0 "> Jhumki </a>
-    <a href="" class="nav-link text-small pb-0 ">Tikka Set </a>
-    <a href="" class="nav-link text-small pb-0 ">Stud Earing  </a>
-    <a href="" class="nav-link text-small pb-0 ">Bangles/kada</a>
-    <a href="" class="nav-link text-small pb-0 ">Rings</a>`;
-}
-function openAmericonDiamond() {
-	document.getElementById("shopeall").style.display = "none";
-	document.getElementById("ad").style.display = "block";
-    document.getElementById("americon-daimond-content").innerHTML = `
-    <a href="#" class="nav-link text-small pb-0">American Diamond Jewellery</a>
-    <a href="#" class="nav-link text-small pb-0 ">Chokers</a>
-    <a href="#" class="nav-link text-small pb-0 ">Kundan</a>
-    <a href="#" class="nav-link text-small pb-0 ">Polki Crystal</a>
-    <a href="#" class="nav-link text-small pb-0">Jadau Jewellery</a>
-    <a href="#" class="nav-link text-small pb-0 ">Meenakari Jewellery</a>
-    <a href="#" class="nav-link text-small pb-0 ">Temple Jewellery</a>
-    <a href="#" class="nav-link text-small pb-0 ">Antique Jewellery</a>`;
-}
 
 // - quantity-number--
 

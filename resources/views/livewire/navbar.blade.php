@@ -1,4 +1,6 @@
 <div>
+              
+                
 <header class="fancyfab-header">
         <nav class="navbar navbar-expand-lg fixed-top bg-white py-3 shadow-sm">
             <a href="{{url('/')}}" class="navbar-brand font-weight-bold mr-auto"> <img src="{{asset('images/LOGO.svg')}}" alt=""> </a>
@@ -20,7 +22,7 @@
                                             @foreach($shopall as $ctg)
                                         
                                                 @if($i<=6)
-                                                    <li class="nav-item"><a href="#" wire:click="ShowProducts({{$ctg->id}})" class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
+                                                    <li class="nav-item"><a href="javascript:void(0)" wire:click="ShowProducts({{$ctg->id}})" class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
                                                 @endif
                                                 <?php $i++ ?>
                                             @endforeach
@@ -33,7 +35,7 @@
                                         <?php $i=1 ?>
                                             @foreach($shopall as $ctg)
                                                 @if($i > 6 && $i<=12)
-                                                    <li class="nav-item"><a href="#" wire:click="ShowProducts({{$ctg->id}})"  class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
+                                                    <li class="nav-item"><a href="javascript:void(0)" wire:click="ShowProducts({{$ctg->id}})"  class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
                                                 @endif
                                                 <?php $i++ ?>
                                             @endforeach
@@ -58,9 +60,7 @@
                                   <ul class="list-unstyled">
                                      @if(!empty($category))
                                             @foreach($category as $ctg)
-                                        
-                                                    <li class="nav-item"><a href="#" wire:click="ShowCategory({{$ctg->id}})"  class="nav-link text-small pb-0">{{$ctg->category}} </a></li>
-                                                
+                                                <li class="nav-item"><a href="javascript:void(0)" wire:click="ShowCategory({{$ctg->id}})"  class="nav-link text-small pb-0">{{$ctg->category}} </a></li>
                                             @endforeach
                                         @endif
                                     </ul>
@@ -80,7 +80,7 @@
                 <div class="header-configure-area">
                     <ul class="nav justify-content-end">
                         <li class="header-search-container mr-0">
-                            <a href="#">
+                            <a href="javascript:void(0)">
                                 <img src="images/search.svg" alt=""> 
                             </a>
                               <form class="header-search-box d-none animated jackInTheBox search-box-open">
@@ -93,11 +93,11 @@
                                 
                                 @if(Auth::check())
                                     <?php $firstname = preg_replace("/\s.*/", '', ltrim(Auth::user()->name)); ?>
-                                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">
                                         {{ucfirst($firstname)}} <i class="fa fa-angle-down"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> My account</a>
+                                        <a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user-circle"></i> My account</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i> {{ __('Logout') }}</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -106,7 +106,7 @@
                                         
                                     </div>
                                  @else
-                                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                    <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="javascript:void(0)">
                                         <img src="{{asset('images/user-icon.svg')}}" alt=""> 
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -127,7 +127,7 @@
                             </a>
                         </li>
                         <li class="side-menu">
-                        <a href="#" class="minicart-btn" data-toggle="modal" data-target="#rightModal">
+                        <a href="javascript:void(0)" class="minicart-btn" data-toggle="modal" data-target="javascript:void(0)rightModal">
                                 <img src="{{asset('images/shopbag.svg')}}" alt=""> 
                                 <div class="notification">{{Cart::count()}}</div>
                             </a>
@@ -143,9 +143,9 @@
                     <div class="header-configure-area">
                         <ul class="nav justify-content-end">
                             <li>
-                            <a href="#" class="minicart-btn" data-toggle="modal" data-target="#rightModal">
+                            <a href="javascript:void(0)" class="minicart-btn" data-toggle="modal" data-target="javascript:void(0)rightModal">
                                     <img src="{{asset('images/shopbag.svg')}}" alt=""> 
-                                    <div class="notification">2</div>
+                                    <div class="notification">{{Cart::count()}}</div>
                                 </a>
                             </li>
                         </ul>
@@ -159,7 +159,21 @@
             </div>
             
           </nav>
+          <script>
+                        //subNavContent
 
+function openShopAll() {
+	document.getElementById("shopeall").style.display = "block";
+	document.getElementById("ad").style.display = "none";
+    
+}
+function openAmericonDiamond() {
+	document.getElementById("shopeall").style.display = "none";
+	document.getElementById("ad").style.display = "block";
+    
+}
+
+ </script>
           <!-- mobile-sidebar-menu -->
 
           <div class="navbar-header">
@@ -179,38 +193,38 @@
                               </form> 
                         </div>
                         <a href="/"><div class="sidenavContent">Home</div></a>
-                        <a href="#" onclick="openShopAll()">
+                        <a href="javascript:void(0)" onclick="openShopAll()">
                             <div class="sidenavRow"><div>Shop All</div>
                             <span class="row-side-arw"><i class="fas fa-chevron-right"></i></span>
                             </div>
                         </a>
-                        <a href="#" onclick="openAmericonDiamond()">
+                        <a href="javascript:void(0)" onclick="openAmericonDiamond()">
                             <div class="sidenavRow"><div>Collection</div>
                             <span class="row-side-arw"><i class="fas fa-chevron-right"></i></span>
                             </div>
                         </a>
-                        <a href="#"><div class="sidenavContent">Bridal</div></a>
-                        <a href="#"><div class="sidenavContent">Antique</div></a>
-                        <a href="#"><div class="sidenavContent">Clearance</div></a>
+                        <a href="javascript:void(0)"><div class="sidenavContent">Bridal</div></a>
+                        <a href="javascript:void(0)"><div class="sidenavContent">Antique</div></a>
+                        <a href="javascript:void(0)"><div class="sidenavContent">Clearance</div></a>
 
                         <div class="fab-setting">
                             <div class="mobile-settings">
                                 <ul class="nav">
                                     <li>
                                         <div class="dropdown mobile-top-dropdown">
-                                            <a href="#" class="dropdown-toggle" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Currency
                                                 <i class="fa fa-angle-down"></i>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="currency" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 20px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a class="dropdown-item" href="#">$ USD</a>
-                                                <a class="dropdown-item" href="#">$ EURO</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">$ USD</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">$ EURO</a>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="dropdown mobile-top-dropdown">
-                                            <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a href="javascript:void(0)" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 My Account
                                                 <i class="fa fa-angle-down"></i>
                                             </a>
@@ -222,23 +236,23 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fas fa-phone"></i> 0123456789</a>
+                                        <a href="javascript:void(0)"><i class="fas fa-phone"></i> 0123456789</a>
                                     </li>
                                     <li>
-                                        <a class="text-lowercase" href="#"><i class="fas fa-envelope"></i> demo@example.com</a>
+                                        <a class="text-lowercase" href="javascript:void(0)"><i class="fas fa-envelope"></i> demo@example.com</a>
                                     </li>
                                 </ul>
                                 
                             </div>
                         </div>
                         <div class="fab-social-widget d-flex flex-wrap justify-content-center">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-flickr"></i></a>
-                            <a href="#"><i class="fas fa-rss"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-flickr"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-rss"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                     <!--End of first container-->
@@ -248,13 +262,29 @@
 							<div id="mainMenu" onclick="openDd();">
 							<span class="main-back-arw"><i class="fas fa-chevron-left"></i></span> Shop All
 							</div>
-							<div id="shop-all-content" class="sub-content"></div>
+							<div id="shop-all-content" class="sub-content">
+                                <ul>
+                                @if(!empty($shopall))
+                                    @foreach($shopall as $ctg)
+                                    <li class="nav-item"><a href="javascript:void(0)" wire:click="ShowProducts({{$ctg->id}})" class="nav-link text-small pb-0">{{$ctg->categoryshopall}} </a></li>
+                                    @endforeach
+                                @endif
+                                </ul>
+                            </div>
 						</div>
 						<div  id="ad" >
 							<div id="mainMenu" onclick="openDd();">
 								<span class="main-back-arw"><i class="fas fa-chevron-left"></i></span> Collection
 							</div>
-							<div id="americon-daimond-content" class="sub-content"></div>
+							<div id="americon-daimond-content" class="sub-content">
+                                <ul>
+                                @if(!empty($category))
+                                    @foreach($category as $ctg)
+                                        <li class="nav-item"><a href="javascript:void(0)" wire:click="ShowCategory({{$ctg->id}})"  class="nav-link text-small pb-0">{{$ctg->category}} </a></li>
+                                    @endforeach
+                                @endif
+                                </ul>
+                            </div>
 						</div>
                     </div>
                    
@@ -330,10 +360,9 @@
                                         echo '<h1>This cart is empty</h1>';
                                     }
                                      ?>
-                                    
-                            
-                        
+                          
                     </div>
+                    
                 </div>
             </div>
         </div>
