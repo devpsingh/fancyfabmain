@@ -78,7 +78,7 @@
                                     </div>
 
                                     <div class="action_link check-out-pro">
-                                        <a class="btn btn-cart2" href="#">Check Out</a>
+                                        <a class="btn btn-cart2" href="{{route('stripe')}}">Check Out</a>
                                     </div>
                                 
                             </div>
