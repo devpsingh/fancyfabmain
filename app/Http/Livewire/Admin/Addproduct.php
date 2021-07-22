@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\shopall;
 use App\Models\Color;
-
+use Image;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,7 +42,7 @@ class Addproduct extends Component
             'shopall_category'=>'required',
             'code' => 'required|max:8|min:3|unique:products',
             'product_name' => 'required|max:20',
-            'images.*' => 'required | mimes:jpeg,jpg,png | max:5000',
+            'images.*' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'description'=>'required|max:200',
             'quantity' => 'required',
             'price' => 'required',           
@@ -59,7 +59,7 @@ class Addproduct extends Component
             'shopall_category'=>'required',
             'code' => 'required|max:8|min:3|unique:products',
             'product_name' => 'required',
-            'images.*' => 'required | mimes:jpeg,jpg,png | max:5000',
+            'images.*' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'description'=>'required',
             'quantity' => 'required',
             'price' => 'required',           
@@ -67,25 +67,18 @@ class Addproduct extends Component
             'coloroptions'=>'required',
             
         ]);
-        function generateRandomString($length = 25) {
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLength = strlen($characters);
-            $randomString = '';
-            for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[rand(0, $charactersLength - 1)];
-            }
-            return $randomString;
-        }
-        
+       
         foreach($this->images as $key=>$value)
         {
-           
-            $imagename = generateRandomString(10);
-           $name = ''.$imagename.'-'.mt_rand(1,9999999).'.'.$value->extension();
-           $value->storeAs('public/products', $name);
-           $this->images[$key] = $name;
-           
-            
+          
+        $input['imagename'] = time().'.'.$value->extension();
+     
+        $filePath = public_path('/products');
+
+        $img = Image::make($value->path());
+        $img->resize(800, 800)->save($filePath.'/'.$input['imagename']);
+              $this->images[$key] = $input['imagename'];
+    
         }
           if($validatedData && !empty($this->images))
           {
@@ -103,7 +96,7 @@ class Addproduct extends Component
             ]);
             session()->flash('message', 'Product successfully Uploaded.');
           }
-            //dd($this->product_category,$this->shopall_category,$this->coloroptions);
+          
         
     }
 }

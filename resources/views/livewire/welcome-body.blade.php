@@ -67,7 +67,7 @@
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src={{ asset('/storage/products/'.$images[0])}} class="img-fluid" alt="Image">
+                            <img src={{ asset('products/'.$images[0])}} class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="{{url('/view/product/'.$demands->id)}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>

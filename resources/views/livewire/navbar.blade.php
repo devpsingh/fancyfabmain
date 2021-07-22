@@ -127,7 +127,7 @@
                             </a>
                         </li>
                         <li class="side-menu">
-                        <a href="javascript:void(0)" class="minicart-btn" data-toggle="modal" data-target="javascript:void(0)rightModal">
+                        <a href="javascript:void(0)" class="minicart-btn" data-toggle="modal" data-target="#rightModal">
                                 <img src="{{asset('images/shopbag.svg')}}" alt=""> 
                                 <div class="notification">{{Cart::count()}}</div>
                             </a>

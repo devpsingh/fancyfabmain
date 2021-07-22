@@ -17,10 +17,12 @@
         "illuminate/events": "^8.40",
         "illuminate/session": "^8.40",
         "illuminate/support": "^8.40",
+        "intervention/image": "^2.6",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
-        "livewire/livewire": "^2.3"
+        "livewire/livewire": "^2.3",
+        "stripe/stripe-php": "^7.90"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
