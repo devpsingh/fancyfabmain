@@ -19,5 +19,6 @@ class Product extends Model
         'price',
         'available',
         'colors',
+        'other_category'
     ];
 }

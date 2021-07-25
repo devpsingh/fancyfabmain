@@ -7,14 +7,14 @@
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <div class="prod-slide-box">
 					@if($products)
-						@foreach($products as $pd)
-						@php $image=json_decode($pd->thumbnail_path); @endphp
-							@if($pd->available==1)
-							<div class="show" href="{{ asset('/storage/products/'.$image[0])}}">
-								<img src="{{ asset('/storage/products/'.$image[0])}}" id="show-img">
+					
+						@php $image=json_decode($products->thumbnail_path); @endphp
+							@if($products->available==1)
+							<div class="show" href="{{ asset('products/'.$image[0])}}">
+								<img src="{{ asset('products/'.$image[0])}}" id="show-img">
 							</div>
 							@endif
-						@endforeach
+						
 					@endif  
                           <!--image thumbnail -->
                         
@@ -23,12 +23,12 @@
                                 <div class="small-container">
                                 <div id="small-img-roll">
 								@if($products)
-									@foreach($products as $pd)
-										@foreach(json_decode($pd->thumbnail_path) as $key=>$image)
-										@if($pd->available==1)
-										<img src="{{ asset('/storage/products/'.$image)}}" class="show-small-img" alt="">
+								
+										@foreach(json_decode($products->thumbnail_path) as $key=>$image)
+										@if($products->available==1)
+										<img src="{{ asset('/products/'.$image)}}" class="show-small-img" alt="">
 										@endif
-										@endforeach
+										
 									@endforeach
 								@endif
                                 </div>
@@ -38,10 +38,10 @@
                     </div>
                 </div>
 				@if(!empty($products))
-							@foreach($products as $pd)
+							
                 <div class="col-lg-7 col-md-6 col-sm-12">
                     <div class="pro-detail">
-                        <h1>{{$pd->product_name}}</h1>
+                        <h1>{{$products->product_name}}</h1>
                         <div class="ratings d-flex">
                             <span><i class="fas fa-star"></i></span>
                             <span><i class="fas fa-star"></i></span>
@@ -53,8 +53,8 @@
                             </div>
                         </div>
 						
-                    <p class="price-prod"><i class="fas fa-pound-sign"></i> {{$pd->price}}</p>
-                    <p class="description">{{$pd->product_desc}}</p>
+                    <p class="price-prod"><i class="fas fa-pound-sign"></i> {{$products->price}}</p>
+                    <p class="description">{{$products->product_desc}}</p>
                     <div id="product2">            
                             <div class="product-rightinfo"> 
                                     <div class="form-group cart-block">
@@ -66,17 +66,24 @@
 											<span class="input-number-increment" wire:click="increaseQty">+</span>
                                         </div>
                                         <div class="action_link">
-                                            <button class="btn btn-cart2"  wire:click="addToCart({{$pd->id}})">Add to cart</button>
+                                            <button class="btn btn-cart2"  wire:click="addToCart({{$products->id}})">Add to cart</button>
                                         </div>
                                         
                                     </div>
                                     
-                                    </div>      
-                                    <div class="useful-links">
-                                        <a href="#" data-toggle="tooltip" title="" data-original-title="Compare" aria-describedby="tooltip178480"><i class="fas fa-sync-alt"></i> compare</a>
-                                        <a href="#" data-toggle="tooltip" title="" data-original-title="Wishlist"><i class="far fa-heart"></i> wishlist</a>
+                                    </div>  
+                                    <h4>Available colors</h4>    
+                                    <div class="useful-links d-flex">
+                                     
+                                       @foreach($colors as $color)
+                                       <div id="c-{{$color}}" class="color-box" onClick="Select(this.id)">
+                                            <label for="color-{{$color}}" style="width:25px;height:25px;background-color:#{{$color}}" class="m-1"></label>
+                                            <input type="radio" id="color-{{$color}}"  name="color" checked style="display:none" />
+                                        </div>
+                                        @endforeach
+                                      
                                     </div>
-
+                                   
                                     <div class="action_link check-out-pro">
                                         <a class="btn btn-cart2" href="{{route('stripe')}}">Check Out</a>
                                     </div>
@@ -85,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-				@endforeach
+				
 			@endif
             </div>
         </div>

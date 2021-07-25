@@ -49,6 +49,22 @@
 <script src="{{asset('js/mslide.js')}}"></script>
 <script src="{{asset('js/jquery.nicescroll.min.js')}}"></script>
 <script src="{{asset('js/custom.js')}}"></script>
-
+<script>
+    $(document).ready(function(){
+        if($('.color-box input').is(':checked')==true)
+        {
+            console.log('checked');
+            $(this).parent().css('border','1px solid red');
+        }
+       
+    });
+    function Select(id)
+    {
+        $('.color-box').css('border','none');
+        
+        ele=document.getElementById(id);
+        ele.style.border='1px solid red';
+    }
+</script>
       </body>
 </html>

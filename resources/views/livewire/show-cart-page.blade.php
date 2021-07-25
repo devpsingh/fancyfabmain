@@ -28,7 +28,7 @@
                                 <tr>
                                     <td class="thumbnail-img">
                                         <a href="#">
-									<img class="img-fluid" src="{{ asset('/storage/products/'.$row->options->img) }}" alt="{{$row->name}}" />
+									<img class="img-fluid" src="{{ asset('products/'.$row->options->img) }}" alt="{{$row->name}}" />
 								</a>
                                     </td>
                                     <td class="name-pr">

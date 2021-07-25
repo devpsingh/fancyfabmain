@@ -22,32 +22,38 @@
 
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="product_category">Select collection category</label>
+                    <label for="product_category">Select category</label>
                     <select wire:model="product_category" class="form-control" name="product_category" id="product_category">
-                    <option>Select collection category</option>
+                    <option value="">Select collection category</option>
+                    <option value="bridal">Bridal</option>
+                    <option value="antique">Antique</option>
+                    <option value="clearance">Cleareance</option>
                         @if(!empty($category))
                             @foreach($category as $cat)
                             <option value="{{ $cat->id }}">{{$cat->category}}</option>
                             @endforeach
                         @endif
-                        @error('product_category') <span class="text-danger">{{ $message }}</span> @enderror
-
                     </select>
+                    @error('product_category') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 </div>
                 <div class="row">
-                <div class="form-group col-md-12">
-                    <label for="product_category">Select collection category</label>
+                    <div class="form-group col-md-4" id="dis"  >
+                        <label for="clearance_discount">Clearance discount</label>
+                        <input type="number" placeholder="Clearance discount" wire:model="discount" class="form-control" id="clearance_discount" />
+                    </div>
+                <div class="form-group col-md-8">
+                    <label for="shopall_category">Select shop all category</label>
                     <select wire:model="shopall_category" class="form-control" name="shopall_category" id="shopall_category">
-                    <option>Select shop all category</option>
+                    <option value="">Select shop all category</option>
+                    
                         @if(!empty($shopall))
                             @foreach($shopall as $cat)
                             <option value="{{ $cat->id }}">{{$cat->categoryshopall}}</option>
                             @endforeach
                         @endif
-                        @error('shopall_category') <span class="text-danger">{{ $message }}</span> @enderror
-
                     </select>
+                    @error('shopall_category') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 </div>
                 @if($colors)
@@ -119,11 +125,5 @@
             </div>
         </div>
     </div>
-    <script>
-    $(document).ready(function() {
-        $('#multiple-checkboxes').multiselect({
-          includeSelectAllOption: true,
-        });
-});
-    </script>
+   
 </div>

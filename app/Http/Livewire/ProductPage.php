@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Models\Product as PD;
+use App\Models\Color;
 use Session;
 use Cart;
 
@@ -39,7 +40,15 @@ class ProductPage extends Component
     }
     public function render(Request $req)
     {
-        $products = PD::where('id',$req->route('slug'))->get();
-        return view('livewire.product-page',['products'=>$products]);
+        $product_id=$req->route('slug');
+        //$products = PD::where('id',$req->route('slug'))->get();
+        $products=PD::find($product_id);
+        $color_ids=unserialize($products->colors);
+        foreach($color_ids as $color)
+        {
+            $clr=Color::find($color);
+            $colors[]=$clr->colorcode;
+        }
+        return view('livewire.product-page',['products'=>$products,'colors'=>$colors]);
     }
 }

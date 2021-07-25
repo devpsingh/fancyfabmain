@@ -317,7 +317,7 @@ function openAmericonDiamond() {
                                             <div class="minicart-thumb">
                                                 <?php //echo '<pre>'; print_r($row->options->img); ?>
                                                 <a href="product-view.html">
-                                                    <img src="{{ asset('/storage/products/'.$row->options->img) }}" alt="{{$row->name}}">
+                                                    <img src="{{ asset('products/'.$row->options->img) }}" alt="{{$row->name}}">
                                                 </a>
                                             </div>
                                             <div class="minicart-content">

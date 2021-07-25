@@ -46,7 +46,7 @@
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="{{asset('storage/products/'.$images[0])}}" class="img-fluid" alt="Image">
+                                                    <img src="{{asset('products/'.$images[0])}}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <a class="cart" href="{{url('/view/product/'.$pd->id)}}">Quick View</a>
                                                     </div>

@@ -23,7 +23,11 @@
   <link rel="stylesheet" href="{{asset('css/dashboard/dashboard.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('css/dashboard/OverlayScrollbars.min.css')}}">
-  
+  <style>
+    .hide-discount{
+      display:none;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -38,7 +42,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<script src="{{asset('js/jquery-3.5.min.js')}}"></script>
     <script src="{{ asset('js/app.js') }}" ></script> 
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('js/jquery-ui.min.js')}}"></script>
@@ -50,5 +54,22 @@
 <script src="{{asset('js/jquery.overlayScrollbars.min.js')}}"></script>
 <script src="{{asset('js/dashboard.js')}}"></script>
     @livewireScripts
+    <script>
+       $(document).ready(function(){
+        //discount input
+        $('#dis').addClass('hide-discount');
+        $('#product_category').on('change',function(){
+          $('#dis').addClass('hide-discount');
+        sel=$(this).val();
+        console.log(sel);
+        if(sel =='bridal' )
+        {
+            $('#dis').removeClass('hide-discount');
+        }else{
+          $('#dis').addClass('hide-discount');
+        }
+      });
+    });
+    </script>
 </body>
 </html>
