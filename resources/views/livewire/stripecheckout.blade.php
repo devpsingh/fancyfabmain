@@ -1,5 +1,9 @@
 <div>
     {{-- The best athlete wants his opponent at his best. --}}
+    
+   @if(!is_null($order_info))
+      {{$order_info}}
+   @endif
     <?php $sub=Cart::subtotal()+Cart::tax();?>
         <?php 
         if($sub !=0 )

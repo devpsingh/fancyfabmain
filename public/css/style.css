@@ -1058,12 +1058,12 @@
  .mask-icon ul li{
      background: white;
 }
- .mask-icon ul li button{
+ .mask-icon ul li a{
      color: dimgrey;
      padding: 5px 10px;
      display: block;
 }
- .mask-icon button.cart{
+ .mask-icon a.cart{
     background: dimgrey;
      position: absolute;
      bottom: 0;
@@ -1073,36 +1073,13 @@
      left: 50%;
      transform: translate(-50%, -50%);
 }
- .mask-icon button.cart:hover{
+ .mask-icon a.cart:hover{
      background: #c29958;
      color: #ffffff;
 }
- .mask-icon ul li button:hover{
+ .mask-icon ul li a:hover{
      background: dimgrey;
      color: #ffffff;
-}
-.mask-icon ul li a{
-    color: dimgrey;
-    padding: 5px 10px;
-    display: block;
-}
-.mask-icon a.cart{
-   background: dimgrey;
-    position: absolute;
-    bottom: 0;
-    padding: 10px 20px;
-    font-weight: 700;
-    color: #fff;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.mask-icon a.cart:hover{
-    background: #c29958;
-    color: #ffffff;
-}
-.mask-icon ul li a:hover{
-    background: dimgrey;
-    color: #ffffff;
 }
  .products-single .mask-icon{
      /* background: rgba(1,1,1, 0.1); */

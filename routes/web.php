@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\CartPageController;
+use App\Http\Controllers\ShippingInfoController;
+use App\Http\Controllers\FinalShippingInfo;
+use App\Http\Controllers\InvoiceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +45,9 @@ Route::namespace("Admin")->prefix('admin')->group(function(){
    });
 
 Route::get('/product/cart', [CartPageController::class, 'ShowCart'])->name('showcart');
+Route::get('/pay/shipping/info', [ShippingInfoController::class, 'index'])->name('shipping.info');
+Route::get('/final/shipping/info', [FinalShippingInfo::class, 'index'])->name('shipping');
 Route::get('/pay/secure/stripe', [StripePaymentController::class, 'index'])->name('stripe');
 Route::post('payment-process', [StripePaymentController::class, 'process']);
 Route::get('/pay/secure/finalcheckout', [StripePaymentController::class, 'process'])->name('finalcheckout');
+Route::get('/order/invoice', [InvoiceController::class, 'index']);

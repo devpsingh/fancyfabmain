@@ -304,7 +304,7 @@ function openAmericonDiamond() {
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="minicart-content-box">
-                           <?php $sub=Cart::subtotal()+Cart::tax();?>
+                           <?php $sub=(Cart::subtotal()+Cart::tax());?>
                                     <?php 
                                     if($sub !=0 )
                                     {
@@ -352,7 +352,7 @@ function openAmericonDiamond() {
                                         </ul>
                                         <div class="minicart-button">
                                             <a href="{{route('showcart')}}"><i class="fa fa-shopping-cart"></i> View Cart</a>
-                                            <a href="{{route('stripe')}}"><i class="fa fa-share"></i> Checkout</a>
+                                            <a href="{{route('shipping.info')}}"><i class="fa fa-share"></i> Checkout</a>
                                         </div>
                                     </div>
                                     <?php

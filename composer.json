@@ -22,7 +22,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "livewire/livewire": "^2.3",
-        "stripe/stripe-php": "^7.90"
+        "stripe/stripe-php": "^7.90",
+        "zgabievi/promocodes": "^8.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
