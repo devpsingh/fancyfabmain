@@ -118,6 +118,9 @@
                                         <div class="col-md-12 p-5 text-center">
                                             <img style="width:200px;" src="{{asset('images/largecart.png')}}" alt="cart">
                                             <p><h1>Your cart is empty</h1></p>
+                                            @if($shipping_error=Session::get('shipping_error'))
+                                            <div class="alert alert-danger"><h5>{{$shipping_error}}</h5></div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

@@ -50,4 +50,4 @@ Route::get('/final/shipping/info', [FinalShippingInfo::class, 'index'])->name('s
 Route::get('/pay/secure/stripe', [StripePaymentController::class, 'index'])->name('stripe');
 Route::post('payment-process', [StripePaymentController::class, 'process']);
 Route::get('/pay/secure/finalcheckout', [StripePaymentController::class, 'process'])->name('finalcheckout');
-Route::get('/order/invoice', [InvoiceController::class, 'index']);
+Route::get('/order/invoice', [InvoiceController::class, 'index'])->name('invoice');

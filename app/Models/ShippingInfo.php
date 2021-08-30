@@ -12,5 +12,5 @@ class ShippingInfo extends Model
         'email','keep_me','first_name','last_name','address_1','address_2',
         'address_3','country_id','state_id','city_id','postal_code','mobile','delivery_charge'
     ];
-    
+       
 }

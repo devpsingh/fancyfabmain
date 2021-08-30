@@ -28,7 +28,7 @@ class ShippingInfo extends Component
         'SelectCountry'=>'required',
         'SelectState'=>'nullable',
         'SelectCity'=>'nullable',
-        'mobile'=>'required|digits:11|numeric',
+        'mobile'=>'required|digits:10|numeric',
         'pin'=>'required|max:10',
         'deliveryOption'=>'required',
     ];
@@ -38,16 +38,22 @@ class ShippingInfo extends Component
             return view('livewire.shipping-info');
         }
         public function mount()
-        {
-            if(Auth::check())
+        {   if(Cart::count() > 0)
             {
-                $this->email=Auth::user()->email;
+                if(Auth::check())
+                {
+                    $this->email=Auth::user()->email;
+                }
+                if(Cart::content()->isEmpty())
+                {
+                    return redirect()->to('/');
+                }
+                $this->countries=Country::all();
             }
-            if(Cart::content()->isEmpty())
-            {
-                return redirect()->to('/');
+            else{
+                Session::flash('shipping_error','Oops! The products you chose are not in stock, please choose other products!');
+                return redirect()->route('showcart');
             }
-            $this->countries=Country::all();
         }
         public function firstStepSubmit()
         {

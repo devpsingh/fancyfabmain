@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Cart;
+use Cart;use Session;
 class ShowCartPage extends Component
 {
     public function render()

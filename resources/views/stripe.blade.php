@@ -26,6 +26,19 @@
       @livewireStyles
    </head>
    <body>
+       <style>
+#loader{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url("{{asset('images/loader.gif')}}") 
+              50% 50% no-repeat rgb(0,0,0);
+}
+       </style>
+       <div id="loader"></div>
      @livewire('navbar')
      @livewire('stripecheckout')
      @livewire('footer')
@@ -40,14 +53,23 @@
 <script src = "https://checkout.stripe.com/checkout.js" > </script> 
 <script type = "text/javascript">
     $(document).ready(function() {
+        $('#show_msg').hide();
+        $('#loader').hide();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
     });
-
+    <?php
+  if(Auth::check()){
+      $email=Auth::user()->email;
+  }else{
+      $email=Session::get('email');
+  }
+  ?>
 $('.btn-block').click(function() {
+    $('#loader').show();
   var amount = $('.amount').val();
   var handler = StripeCheckout.configure({
       key: 'pk_test_51ItXqwHOLILXCfus5BaWMdc8mBRuy0B16rpGseJEZHTpnaM1QfmWIMdXbYAVKwoHnpuTUdJGc9UfxcjGJ1BoxeQ3001B6hK8db', // your publisher key id
@@ -63,31 +85,37 @@ $('.btn-block').click(function() {
               method: 'post',
               data: {
                   tokenId: token.id,
-                  amount: amount
+                  amount: amount,
+                  email:'{{$email}}',
               },
               success: (response) => {
-                  console.log(response)
-                  $('#res_token').text('Your payment is successful!');
+                  //console.log(response)
+                  $('#loader').hide();
+                  if(response.product_short)
+                  {
+                    $('#show_msg').show();
+                        setTimeout('location.href = "/pay/secure/stripe"',5000);
+                  }else{
+                      window.location.href="/order/invoice";
+                  }
+                 // $('#res_token').text();
               },
               error: (error) => {
                   console.log(error);
-                  $('#res_token').text('Oops! Some error occured!');
+                  $('#loader').hide();
+                  $('#res_token').text('Oops! Some error occured! ');
               }
           })
       }
   });
-  <?php
-  if(Auth::check()){
-      $email=Auth::user()->email;
-  }
-  ?>
+  
   handler.open({
       name: 'FancyFab',
       description: 'fancyfab.co.uk',
       @if(!empty($email))
       email:'{{$email}}',
       @endif
-      image:'{{asset('images/FANCY FAB_76X76.png')}}',
+      image:'{{asset('images/FANCYFAB_76X76.png')}}',
       amount: amount * 100
   });
 })

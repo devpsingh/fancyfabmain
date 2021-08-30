@@ -221,6 +221,9 @@
                                 <a href="{{url('/')}}"> <i class="fas fa-chevron-left"></i> Continue shopping</a>
                             </div>
                         </form>
+                        @if($order_err=Session::get('order_err'))
+                        <div class="alert alert-danger">{{$order_err}}</div>
+                        @endif
                     </div>
                     <div class="ship-footer">
                         <ul>
@@ -252,11 +255,14 @@
                             </li>
                             @endforeach
                         </ul>
+                        @if($cart_error=Session::get('cart_error'))
+                        <div class="alert alert-danger">@foreach($cart_error as $err) {{$err}}<br> @endforeach</div>
+                        @endif
                     </div>
                      <div class="ship-discount-field">
                          
                         <input type="text" placeholder="Discount code" wire:model="code">
-                        <input class="btn discount-submit-btn btn--disabled" wire:click.prevent="CouponDiscount" type="submit" value="Apply">
+                        <input class="btn discount-submit-btn btn--disabled" wire:click.prevent="CouponDiscount('{{$ship->email}}')" type="submit" value="Apply">
                         
                     </div> 
                     @if($err=Session::get('promo_error'))
@@ -316,10 +322,7 @@
                                 <li>
                                     <div class="total-ship-price">
                                         <h6>Total</h6>
-                                        @if($deliveryOption ==0)
-                                        $deliveryOption=0;
-                                        @endif
-                                        <p class="total-shipping-amt">£ {{Cart::subtotal()+($deliveryOption)+((Cart::count()-1)*8)-$coupondiscount}}</p>
+                                        <p class="total-shipping-amt">£ {{Cart::subtotal()+$deliveryOption+((Cart::count()-1)*8)-$coupondiscount}}</p>
                                     </div>
                                 </li>
                             </ul>

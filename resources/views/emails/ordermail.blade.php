@@ -1,31 +1,34 @@
-<div>
-    {{-- Nothing in the world is as soft and yielding as water. --}}
-
-    @if(!is_null($order_info) && !is_null($shipping_address) && !is_null($billing_address))
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Mail</title>
+</head>
+<body>
 <div class="container mt-3">
     <div class="card">
         <div class="card-header d-flex"><div class="mr-auto">
-        <h4>Invoice No. FF-{{$order_info->id}}</h4>
-        <h6 ><strong>Order No: {{$order_info->order_id}}
-        <br>Pay Id: @if($order_info->payment_mode=='cod') Cash on delivery @else {{$order_info->stripe_id}} @endif
-        <br>Email:{{$order_info->email}}</strong>
-        <br>Billing Address:<br>{{$billing_address->address_1}},
-        @if(!is_null($billing_address->address_2)) <br>{{$billing_address->address_2}}, @endif
-        @if(!is_null($billing_address->address_2)) {{$billing_address->address_3}}, @endif
-        <br>@if(!is_null($billing_city)){{$billing_city->name}},@endif @if(!is_null($billing_state)){{$billing_state->name}}@endif
-        <br>@if(!is_null($billing_country)){{$billing_country->name}}-@endif{{$billing_address->postal_code}}
+        <h4>Invoice No. FF-{{$emails['invoice_id']}}</h4>
+        <h6 ><strong>Order No: {{$emails['order_id']}}
+        <br>Pay Id: {{$emails['stripe_id']}}
+        <br>Email:{{$emails['email']}}</strong>
+        <br>Name: {{$emails['billing_first_name']}} {{$emails['billing_last_name']}}
+        <br>Billing Address:<br>{{$emails['billing_address_1']}},
+         <br>{{$emails['billing_address_2']}} {{$emails['billing_address_3']}}
+        <br>{{$emails['billing_city']}}, {{$emails['billing_state']}}
+        <br>{{$emails['billing_country']}}-{{$emails['billing_zip']}}
+        <br>Mobile: {{$emails['billing_mobile']}}
         </h6>
             
         </div>
         <div class="justify-content-center"><br><img src="{{asset('images/LOGO.svg')}}" style="height:60px"></div>
             <div class="ml-auto">
-               <h6><b>Shipping Address:</b> <br>Name: {{Str::ucfirst($shipping_address->first_name)}} {{$shipping_address->last_name}}
-               @if(!is_null($shipping_address->address_2)) <br>{{$shipping_address->address_2}}, @endif
-                @if(!is_null($shipping_address->address_2)) {{$shipping_address->address_3}}, @endif
-                {{$shipping_address->address_3}},<br>@if(!is_null($shipping_city)){{$shipping_city->name}},@endif
-                @if(!is_null($shipping_state)){{$shipping_state->name}} @endif
-                <br>@if(!is_null($shipping_country)){{$shipping_country->name}}-@endif{{$shipping_address->postal_code}}
-                <br>Mobile: {{$shipping_address->mobile}}
+        <h6>
+            Name: {{$emails['shipping_first_name']}} {{$emails['shipping_last_name']}}
+        <br>Shipping Address:<br>{{$emails['shipping_address_1']}},
+         <br>{{$emails['shipping_address_2']}} {{$emails['shipping_address_3']}}
+        <br>{{$emails['shipping_city']}}, {{$emails['shipping_state']}}
+        <br>{{$emails['shipping_country']}}-{{$emails['shipping_zip']}}
+        <br>Mobile: {{$emails['shipping_mobile']}}
                 </h6>
             </div>
     </div>
@@ -51,15 +54,16 @@
                 <tbody>
                 @php
                      $i=1;$total_quantity=0;$total_base_price=0;$total_tax=0;$total_price=0;
-                     $shipping_charge=$shipping_address->delivery_charge;
+                     $shipping_charge= "{{$emails['shipping_charges']}}";
+                     $coupon_discount="{{$emails['discount_value']}}";
                 @endphp
-                    @foreach(json_decode($order_info->product_info) as $product)
+                    @foreach($emails['product_info'] as $product)
                     @php 
                         $total_quantity=$total_quantity+$product->qty;
                         $total_base_price=$total_base_price+($product->price*$product->qty)-($product->tax*$product->qty);
                         $total_tax=$total_tax+($product->tax*$product->qty);
                         $total_price=$total_price+($product->price*$product->qty);
-                        $discount=$total_price*($coupon_discount/100);
+                        $discount=$total_price*((int)$coupon_discount/100);
                     @endphp
                     <tr>
                     <th scope="row">{{$i}}</th>
@@ -84,7 +88,7 @@
                     <td colspan="2" class="text-right"></td>
                     <td><b>Delivery Charges<b></td>
                     <td colspan="3" ></td>
-                    <td><b><i class="fa fa-pound-sign"></i> {{$shipping_charge}}</b></td>
+                    <td><b><i class="fa fa-pound-sign"></i> {{(int)$shipping_charge}}</b></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="text-right"></td>
@@ -102,7 +106,7 @@
                     <td colspan="2" class="text-right"></td>
                     <td><b>Grand Total<b></td>
                     <td colspan="3" ></td>
-                    <td><b><i class="fa fa-pound-sign"></i> {{$total_price-$discount+(($total_quantity-1)*8)+$shipping_charge}}</b></td>
+                    <td><b><i class="fa fa-pound-sign"></i> {{$total_price-$discount+(($total_quantity-1)*8)+(int) $shipping_charge}}</b></td>
                 </tr>
                 </tbody>
                 </table>
@@ -114,5 +118,5 @@
         </div>
     </div>
 </div>
-@endif
-</div>
+</body>
+</html>
